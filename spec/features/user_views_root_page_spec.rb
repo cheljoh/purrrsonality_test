@@ -1,0 +1,12 @@
+require "rails_helper"
+
+RSpec.feature "UserViewsRootPage", type: :feature do
+  scenario "user visits root page" do
+    visit "/"
+    expect(page).to have_content("Purrrsonality Test")
+    expect(page).to have_link("Take the Test")
+    expect(page).to have_button("Generate Random Cat Gif!")
+
+    save_and_open_page
+  end
+end
