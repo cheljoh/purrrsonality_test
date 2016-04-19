@@ -1,18 +1,22 @@
 require "rails_helper"
 
-RSpec.feature "UserLogsInWithFacebook", type: :feature do
+RSpec.feature "UserLogsInAndOut", type: :feature do
 
   before(:each) do
     Capybara.app = PurrrsonalityTest::Application
     stub_omniauth
   end
 
-  scenario "logging in" do
+  scenario "user logs in and out" do
     VCR.use_cassette("cat_picture_service.picture") do
       visit "/"
       click_on "Sign in with Facebook"
       expect(page).to have_content("chelsea")
       expect(page).to have_link("Logout")
+      expect(page).to_not have_link("Sign in with Facebook")
+      click_on "Logout"
+      expect(page).to have_link("Sign in with Facebook")
+      expect(page).to_not have_link("Logout")
     end
   end
 
