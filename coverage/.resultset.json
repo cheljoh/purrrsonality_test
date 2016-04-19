@@ -19,30 +19,10 @@
         null,
         null
       ],
-      "/Users/chelseajohnson/Documents/turing/3module/purrrsonality_test/app/services/cat_picture_service.rb": [
-        1,
-        null,
-        1,
-        2,
-        null,
-        null,
-        1,
-        2,
-        2,
-        null,
-        null,
-        1,
-        null,
-        1,
-        0,
-        null,
-        null
-      ],
       "/Users/chelseajohnson/Documents/turing/3module/purrrsonality_test/app/controllers/home_controller.rb": [
         1,
         null,
         1,
-        6,
         null,
         null
       ],
@@ -52,7 +32,7 @@
         1,
         null,
         1,
-        7,
+        5,
         null,
         null
       ],
@@ -73,6 +53,6 @@
         null
       ]
     },
-    "timestamp": 1461097075
+    "timestamp": 1461105045
   }
 }
