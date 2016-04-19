@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'httparty'
 gem 'faraday'
+gem 'figaro'
 gem "omniauth-facebook"
 
 # Use ActiveModel has_secure_password

@@ -5,41 +5,74 @@
         1,
         null
       ],
-      "/Users/chelseajohnson/Documents/turing/3module/purrrsonality_test/app/controllers/home_controller.rb": [
+      "/Users/chelseajohnson/Documents/turing/3module/purrrsonality_test/app/models/user.rb": [
         1,
         null,
         1,
         1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/chelseajohnson/Documents/turing/3module/purrrsonality_test/app/services/cat_picture_service.rb": [
+        1,
+        null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        2,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null
+      ],
+      "/Users/chelseajohnson/Documents/turing/3module/purrrsonality_test/app/controllers/home_controller.rb": [
+        1,
+        null,
+        1,
+        5,
         null,
         null
       ],
       "/Users/chelseajohnson/Documents/turing/3module/purrrsonality_test/app/controllers/application_controller.rb": [
         1,
+        1,
+        1,
+        null,
+        1,
+        6,
+        null,
+        null
+      ],
+      "/Users/chelseajohnson/Documents/turing/3module/purrrsonality_test/app/controllers/sessions_controller.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
         null,
         null,
         1,
+        0,
+        0,
+        null,
         null
-      ],
-      "/Users/chelseajohnson/Documents/turing/3module/purrrsonality_test/app/services/cat_picture_service.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
       ]
     },
-    "timestamp": 1461035851
+    "timestamp": 1461040001
   }
 }
