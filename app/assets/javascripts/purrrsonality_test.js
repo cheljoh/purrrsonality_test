@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 function getRandomCat(){
   $.ajax({
-    url: "http://thecatapi.com/api/images/get?size=med&format=html&type=gif",
+    url: "https://thecatapi.com/api/images/get?size=med&format=html&type=gif",
     method: "GET",
     dataType: "html",
     success: function(picture){
