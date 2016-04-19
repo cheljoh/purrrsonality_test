@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://thecatapi.com/api/images/get?size=small&type=gif
+    uri: http://thecatapi.com/api/images/get?size=med&type=gif
     body:
       encoding: US-ASCII
       string: ''
@@ -19,7 +19,7 @@ http_interactions:
       message: Found
     headers:
       Date:
-      - Tue, 19 Apr 2016 01:54:31 GMT
+      - Tue, 19 Apr 2016 02:55:39 GMT
       Server:
       - Apache
       X-Powered-By:
@@ -35,7 +35,7 @@ http_interactions:
       Expires:
       - Sat, 26 Jul 1997 05:00:00 GMT
       Location:
-      - http://25.media.tumblr.com/tumblr_kox053z0jL1qzvqipo1_250.gif
+      - http://24.media.tumblr.com/tumblr_m0z8oaKrqZ1rqh578o1_250.gif
       Content-Length:
       - '0'
       Content-Type:
@@ -44,5 +44,5 @@ http_interactions:
       encoding: UTF-8
       string: ''
     http_version: 
-  recorded_at: Tue, 19 Apr 2016 01:54:32 GMT
+  recorded_at: Tue, 19 Apr 2016 02:55:39 GMT
 recorded_with: VCR 3.0.1
