@@ -19,22 +19,22 @@ function getRandomCat(){
 }
 
 function getQuestions(){
-  // $.getJSON("http://localhost:3000/api/v1/questions"), function(questions) {
-  //   console.log(questions)
-  // }
   $.ajax({
-    url: "http://localhost:3000/api/v1/questions",
+    url: "http://localhost:3000/api/v1/questions", //"https://personalitytest.herokuapp.com/api/v1/questions"
     method: "GET",
     dataType: "json",
     success: function(questions){
       $(".questions").html()
       $(".questions")
-        .append("<p> 1 = Inaccurate  2 = Somewhat Inaccurate  3 = Neutral  4 = Somewhat Accurate  5 = Accurate</p>")
-      $(questions).each(function(index, question){
-        var number = (index * 5 + 1)
+        .append("<div class='center-align'><p> 1 = Inaccurate <span class='tab-space'> 2 = Somewhat Inaccurate </span> <span class='tab-space'> 3 = Neutral </span> <span class='tab-space'> 4 = Somewhat Accurate </span> <span class='tab-space'> 5 = Accurate</p></space></div> <br>")
+      $(questions).each(function(index, test_question){
+        var number1 = (test_question.id + '-1')
+        var number2 = (test_question.id + '-2')
+        var number3 = (test_question.id + '-3')
+        var number4 = (test_question.id + '-4')
+        var number5 = (test_question.id + '-5')
       $(".questions")
-        // .append("<p>" + question[index + 1] + "</p> <form action='#'> <div class='responses'> <input name='group' type='radio' id='1'/> <label for='1'>1</label> </div> <div class='responses'> <input name='group' type='radio' id='2' /> <label for='2'>2</label> </div> <div class='responses'> <input name='group' type='radio' id='3' /> <label for='3'>3</label> </div> <div class='responses'> <input name='group' type='radio' id='4' /> <label for='4'>4</label> </div> <div class='responses'> <input name='group' type='radio' id='5' /> <label for='5'>5</label> </div> </form>")
-        .append("<p>" + question[index + 1] + "</p> <form action='#'> <div class='responses'> <input name='group' type='radio' id=" + (index * 5 + 1) + "/> <label for=" + (index * 5 + 1).toString() + ">1</label> </div> <div class='responses'> <input name='group' type='radio' id='2' /> <label for='2'>2</label> </div> <div class='responses'> <input name='group' type='radio' id='3' /> <label for='3'>3</label> </div> <div class='responses'> <input name='group' type='radio' id='4' /> <label for='4'>4</label> </div> <div class='responses'> <input name='group' type='radio' id='5' /> <label for='5'>5</label> </div> </form>")
+        .append("<div class='row'> <div class='col s5 offset-s1'>" + test_question.question + "</div> <div class='col s5 offset-s1'> <form action='#'> <div class='responses'> <input name='group' type='radio' id='" + number1 + "'/> <label for='" + number1 + "'>1</label> </div> <div class='responses'> <input name='group' type='radio' id='" + number2 + "'/> <label for='" + number2 + "'>2</label> </div> <div class='responses'> <input name='group' type='radio' id='" + number3 + "' /> <label for='" + number3 + "'>3</label> </div> <div class='responses'> <input name='group' type='radio' id='" + number4 + "' /> <label for='" + number4 + "'>4</label> </div> <div class='responses'> <input name='group' type='radio' id='" + number5 + "' /> <label for='" + number5 + "'>5</label> </div> </form> </div> </div>")
       })
     },
     error: function(){
@@ -42,3 +42,5 @@ function getQuestions(){
     }
   })
 }
+
+// question[index + 1]

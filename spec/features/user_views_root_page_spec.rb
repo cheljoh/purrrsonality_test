@@ -5,5 +5,6 @@ RSpec.feature "UserViewsRootPage", type: :feature do
     visit "/"
     expect(page).to have_content("Purrrsonality Test")
     expect(page).to have_button("Generate Random Cat Gif!")
+    expect(page).to have_button("Take the Test!")
   end
 end

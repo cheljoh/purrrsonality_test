@@ -10,7 +10,14 @@ html {
    display: inline;
  }
 
- .dogs {
-  margin-left: 10px;
-  display: inline;
+ .all-questions {
+   margin-left: 50px;
+ }
+
+.tab-space {
+  padding-left: 2em;
+}
+
+.form {
+  white-space: nowrap;
 }
