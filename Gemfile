@@ -25,13 +25,13 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'database_cleaner'
-  gem 'vcr'
+  #gem 'vcr'
 end
 
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'simplecov', require: false
-  gem 'webmock'
+  #gem 'webmock'
 end
 
 group :development do
