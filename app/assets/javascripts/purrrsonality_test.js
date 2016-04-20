@@ -25,8 +25,7 @@ function getQuestions(){
     dataType: "json",
     success: function(questions){
       $(".questions").html()
-      $(".questions")
-        .append("<div class='center-align'><p> 1 = Inaccurate <span class='tab-space'> 2 = Somewhat Inaccurate </span> <span class='tab-space'> 3 = Neutral </span> <span class='tab-space'> 4 = Somewhat Accurate </span> <span class='tab-space'> 5 = Accurate</p></space></div> <br>")
+      questionOptions()
       $(questions).each(function(index, test_question){
         var number1 = (test_question.id + '-1')
         var number2 = (test_question.id + '-2')
@@ -43,4 +42,7 @@ function getQuestions(){
   })
 }
 
-// question[index + 1]
+function questionOptions() {
+  $(".questions")
+    .append("<div class='center-align'><p> 1 = Inaccurate <span class='tab-space'> 2 = Somewhat Inaccurate </span> <span class='tab-space'> 3 = Neutral </span> <span class='tab-space'> 4 = Somewhat Accurate </span> <span class='tab-space'> 5 = Accurate</p></space></div> <br>")
+}
