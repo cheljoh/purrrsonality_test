@@ -5,3 +5,12 @@ html {
  .brand-logo {
    margin-left: 10px;
  }
+
+ .responses {
+   display: inline;
+ }
+
+ .dogs {
+  margin-left: 10px;
+  display: inline;
+}
