@@ -20,7 +20,7 @@ function getRandomCat(){
 
 function getQuestions(){
   $.ajax({
-    url: "http://localhost:3000/api/v1/questions", //"https://personalitytest.herokuapp.com/api/v1/questions"
+    url: "https://personalitytest.herokuapp.com/api/v1/questions", //"http://localhost:3000/api/v1/questions"
     method: "GET",
     dataType: "json",
     success: function(questions){
