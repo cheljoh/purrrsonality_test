@@ -5,3 +5,19 @@ html {
  .brand-logo {
    margin-left: 10px;
  }
+
+ .responses {
+   display: inline;
+ }
+
+ .all-questions {
+   margin-left: 50px;
+ }
+
+.tab-space {
+  padding-left: 2em;
+}
+
+.form {
+  white-space: nowrap;
+}
