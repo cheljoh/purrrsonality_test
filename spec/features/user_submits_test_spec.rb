@@ -14,11 +14,9 @@ RSpec.feature "UserSubmitsTestSpec", type: :feature do
 
 end
 
-#input[group][value]
+#input[group][value] value = checked
 
 #capybara execute script, pass jquery do check buttons
-
-#update firefox
 
 
 # As a user

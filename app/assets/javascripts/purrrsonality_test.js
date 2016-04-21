@@ -17,15 +17,19 @@ function radioInput() {
 }
 
 function postData(){
-  all_answers = {}
-  all_answers.answers = results
+
+
   //check for keys if present, do ajax, else, reload
+  var location = "http://localhost:8888/"
+  var post_data = { "answers": results, "location": location }
   $.ajax({
     url: "http://localhost:3000/api/v1/answers",
     method: "POST",
     dataType: "json",
-    data: all_answers,
+    data: post_data,
+    // data: all_answers,
     success: function(response){ //will get response back
+      console.log("it worked")
       console.log(response)//get results
       $(".questions").hide()
     },
@@ -49,8 +53,6 @@ function getRandomCat(){
     }
   })
 }
-
-
 
 function getQuestions(){
   $.ajax({
