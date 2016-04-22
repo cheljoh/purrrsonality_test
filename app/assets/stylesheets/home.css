@@ -21,3 +21,7 @@ html {
 .form {
   white-space: nowrap;
 }
+
+.card-style {
+  margin: auto;
+}

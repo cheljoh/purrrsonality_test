@@ -27,16 +27,94 @@ function postData(){
     method: "POST",
     dataType: "json",
     data: post_data,
-    // data: all_answers,
     success: function(response){ //will get response back
-      console.log("it worked")
-      console.log(response)//get results
+      // console.log("it worked")
+      // console.log(response)//get results
       $(".questions").hide()
+      showResults(response)
     },
     error: function(){
     console.log("Something went wrong")
     }
   })
+}
+
+// "Extraversion: " + response["extraversion"] + "/20" +
+// "Agreeableness: " + response["agreeableness"] + "/20" +
+// "Conscientiousness: " + response["conscientiousness"] + "/20" +
+
+function showResults(response) {
+  $(".information")
+  .html(
+  "<div class='row'>" +
+    "<div class='col s12 m5'>" +
+    "<div class=card small" +
+      "<span class='card-title'>Extraversion: " + response["extraversion"] + "/20</span>" +
+        "<div class='card-content teal lighten-3'>" +
+          "<span class='white-text'>" +
+            "<p>A score of ____ is considered ____. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
+          "</span>" +
+        "</div>" +
+      "</div>" +
+    "</div>" +
+    "<div class='col s12 m5'>" +
+    "<div class=card small" +
+      "<span class='card-title'>Agreeableness: " + response["agreeableness"] + "/20</span>" +
+        "<div class='card-content teal lighten-3'>" +
+          "<span class='white-text'>" +
+            "<p>A score of ____ is considered ____. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
+          "</span>" +
+        "</div>" +
+      "</div>" +
+    "</div>" +
+  "</div>" +
+  "<div class='row'>" +
+    "<div class='col s12 m5'>" +
+    "<div class=card small" +
+      "<span class='card-title'>Emotional Stability: " + response["emotional_stability"] + "/20</span>" +
+        "<div class='card-content teal lighten-3'>" +
+          "<span class='white-text'>" +
+            "<p>A score of ____ is considered ____. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
+          "</span>" +
+        "</div>" +
+      "</div>" +
+    "</div>" +
+    "<div class='col s12 m5'>" +
+    "<div class=card small" +
+      "<span class='card-title'>Intellect: " + response["intellect"] + "/20</span>" +
+        "<div class='card-content teal lighten-3'>" +
+          "<span class='white-text'>" +
+            "<p>A score of ____ is considered ____. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
+          "</span>" +
+        "</div>" +
+      "</div>" +
+    "</div>" +
+  "</div>" +
+  "<div class='row'>" +
+    "<div class='col s12 m5'>" +
+    "<div class=card small" +
+      "<span class='card-title'>Conscientiousness: " + response["Conscientiousness"] + "/20</span>" +
+        "<div class='card-content teal lighten-3'>" +
+          "<span class='white-text'>" +
+            "<p>A score of ____ is considered ____. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
+          "</span>" +
+        "</div>" +
+      "</div>" +
+    "</div>" +
+  "</div>")
+  // "<div class='row'>" +
+  //   "<div class='col s12 m5'>" +
+  //   "<span class='card-title'> Extraversion:</span>" +
+  //     "<div class='card-panel cyan accent-4'>" +
+  //       "<span class='white-text'>" +
+  //         "<p> Extraversion: " + response["extraversion"] + "/20</p>" +
+  //         "<p> Agreeableness: " + response["agreeableness"] + "/20</p>" +
+  //         "<p> Conscientiousness: " + response["conscientiousness"] + "/20</p>" +
+  //       "</span>" +
+  //     "</div>" +
+  //   "</div>" +
+  // "</div>")
+  console.log(response)
 }
 
 function getRandomCat(){
@@ -70,7 +148,7 @@ function getQuestions(){
 }
 
 function renderQuestions(questions){
-  $(".questions").html()
+  $(".information").html()
   questionOptions()
   $(questions).each(function(index, test_question){
     var number1 = (test_question.id + '-1')
@@ -79,15 +157,15 @@ function renderQuestions(questions){
     var number4 = (test_question.id + '-4')
     var number5 = (test_question.id + '-5')
     var group = (test_question.id)
-  $(".questions")
+  $(".information")
     .append("<div class='row'> <div class='col s5 offset-s1'>" + test_question.question + "</div> <div class='col s5 offset-s1'><div class='responses'> <input name='" + group + "' value = '1' type='radio' id='" + number1 + "'/> <label for='" + number1 + "'>1</label> </div> <div class='responses'> <input name='" + group + "' value = '2' type='radio' id='" + number2 + "'/> <label for='" + number2 + "'>2</label> </div> <div class='responses'> <input name='" + group + "' value = '3' type='radio' id='" + number3 + "' /> <label for='" + number3 + "'>3</label> </div> <div class='responses'> <input name='" + group + "' value = '4' type='radio' id='" + number4 + "' /> <label for='" + number4 + "'>4</label> </div> <div class='responses'> <input name='" + group + "' value = '5' type='radio' id='" + number5 + "' /> <label for='" + number5 + "'>5 </label> </div> </div></div>")
   })
-  $(".questions")
+  $(".information")
   .append("<br><div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div><br><br>")
 }
 
 function questionOptions() {
-  $(".questions")
+  $(".information")
     .append("<div class='center-align'><p> 1 = Inaccurate <span class='tab-space'> 2 = Somewhat Inaccurate </span> <span class='tab-space'> 3 = Neutral </span> <span class='tab-space'> 4 = Somewhat Accurate </span> <span class='tab-space'> 5 = Accurate</p></space></div> <br>")
 }
 
