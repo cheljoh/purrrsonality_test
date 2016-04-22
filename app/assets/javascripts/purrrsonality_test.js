@@ -47,7 +47,7 @@ function showResults(response) {
   $(".information")
   .html(
     "<div class='row'>" +
-       "<div class='col s12 m5'>" +
+       "<div class='col s5 offset-s1'>" +
          "<div class='card-panel teal lighten-3'>" +
           "<span class='white-text'>" +
             "<p class='factor-title'>Extraversion:  " + response["extraversion"] + "/20</p>" +
