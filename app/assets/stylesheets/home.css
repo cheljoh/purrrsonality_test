@@ -24,4 +24,10 @@ html {
 
 .card-style {
   margin: auto;
+  width: 200px;
+  height: 300px;
+}
+
+.factor-title {
+  font-size: 18px;
 }

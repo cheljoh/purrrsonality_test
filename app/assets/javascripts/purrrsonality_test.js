@@ -46,62 +46,112 @@ function postData(){
 function showResults(response) {
   $(".information")
   .html(
-  "<div class='row'>" +
-    "<div class='col s12 m5'>" +
-    "<div class=card small" +
-      "<span class='card-title'>Extraversion: " + response["extraversion"] + "/20</span>" +
-        "<div class='card-content teal lighten-3'>" +
+    "<div class='row'>" +
+       "<div class='col s12 m5'>" +
+         "<div class='card-panel teal lighten-3'>" +
           "<span class='white-text'>" +
-            "<p>A score of ____ is considered ____. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
+            "<p class='factor-title'>Extraversion:  " + response["extraversion"] + "/20</p>" +
+            "<p>A score of " + response["extraversion"] + " is considered " + rateScore(response["extraversion"]) + ". Extraversion measures the degree people seek the presence of others. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection.</p>" +
+          "</span>" +
+        "</div>" +
+      "</div>" +
+       "<div class='col s12 m5'>" +
+         "<div class='card-panel teal lighten-3'>" +
+          "<span class='white-text'>" +
+            "<p class='factor-title'>Agreeableness:  " + response["agreeableness"] + "/20</p>" +
+            "<p>A score of " + response["agreeableness"] + " is considered " + rateScore(response["agreeableness"]) + ". Agreeabless measures how trusting and cooperative one is. A high score is associated with naivete, while individuals with low scores may be perceived as competitive or not trusting of others.</p>" +
           "</span>" +
         "</div>" +
       "</div>" +
     "</div>" +
-    "<div class='col s12 m5'>" +
-    "<div class=card small" +
-      "<span class='card-title'>Agreeableness: " + response["agreeableness"] + "/20</span>" +
-        "<div class='card-content teal lighten-3'>" +
+    "<div class='row'>" +
+       "<div class='col s12 m5'>" +
+         "<div class='card-panel teal lighten-3'>" +
           "<span class='white-text'>" +
-            "<p>A score of ____ is considered ____. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
+            "<p class='factor-title'>Intellect/Imagination:  " + response["intellect"] + "/20</p>" +
+            "<p>A score of " + response["intellect"] + " is considered " + rateScore(response["intellect"]) + ". Intellect measures one's curiosity, imagination, and independence. Individuals with high scores are more likely to seek extreme experiences (e.g., skydiving), while individudals with low scores are more pragmatic. </p>" +
+          "</span>" +
+        "</div>" +
+      "</div>" +
+       "<div class='col s12 m5'>" +
+         "<div class='card-panel teal lighten-3'>" +
+          "<span class='white-text'>" +
+            "<p class='factor-title'>Emotional Stability:  " + response["emotional_stability"] + "/20</p>" +
+            "<p>A score of " + response["emotional_stability"] + " is considered " + rateScore(response["emotional_stability"]) + ". Emotional stability measures one's tendency to experience extreme emotions. A high score is associated with a stable and calm personality, while a low score is associated with an excitable personality.</p>" +
           "</span>" +
         "</div>" +
       "</div>" +
     "</div>" +
-  "</div>" +
-  "<div class='row'>" +
-    "<div class='col s12 m5'>" +
-    "<div class=card small" +
-      "<span class='card-title'>Emotional Stability: " + response["emotional_stability"] + "/20</span>" +
-        "<div class='card-content teal lighten-3'>" +
+    "<div class='row'>" +
+       "<div class='col s12 m5'>" +
+         "<div class='card-panel teal lighten-3'>" +
           "<span class='white-text'>" +
-            "<p>A score of ____ is considered ____. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
+            "<p class='factor-title'>Conscientiousness: " + response["conscientiousness"] + " / 20</p>" +
+            "<p>A score of " + response["conscientiousness"] + " is considered " + rateScore(response["conscientiousness"]) + ". A high score is associated with attention-seeking, while a low score is associated with increased self-reflection</p>" +
           "</span>" +
         "</div>" +
       "</div>" +
-    "</div>" +
-    "<div class='col s12 m5'>" +
-    "<div class=card small" +
-      "<span class='card-title'>Intellect: " + response["intellect"] + "/20</span>" +
-        "<div class='card-content teal lighten-3'>" +
-          "<span class='white-text'>" +
-            "<p>A score of ____ is considered ____. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
-          "</span>" +
-        "</div>" +
-      "</div>" +
-    "</div>" +
-  "</div>" +
-  "<div class='row'>" +
-    "<div class='col s12 m5'>" +
-    "<div class=card small" +
-      "<span class='card-title'>Conscientiousness: " + response["Conscientiousness"] + "/20</span>" +
-        "<div class='card-content teal lighten-3'>" +
-          "<span class='white-text'>" +
-            "<p>A score of ____ is considered ____. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
-          "</span>" +
-        "</div>" +
-      "</div>" +
-    "</div>" +
-  "</div>")
+    "</div>")
+  // "<div class='row'>" +
+  //   "<div class='col s12 m5'>" +
+  //   "<div class=card small" +
+  //     "<span class='card-title'>Extraversion: " + response["extraversion"] + "/20</span>" +
+  //       "<div class='card-content teal lighten-3'>" +
+  //         "<span class='white-text'>" +
+  //           "<p>A score of " + response["extraversion"] + " is considered " + rateScore(response["extraversion"]) + ". A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
+  //         "</span>" +
+  //       "</div>" +
+  //     "</div>" +
+  //   "</div>" +
+  //   "<div class='col s12 m5'>" +
+  //   "<div class=card small" +
+  //     "<span class='card-title'>Agreeableness: " + response["agreeableness"] + "/20</span>" +
+  //       "<div class='card-content teal lighten-3'>" +
+  //         "<span class='white-text'>" +
+  //           "<p>A score of ____ is considered ____. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
+  //         "</span>" +
+  //       "</div>" +
+  //     "</div>" +
+  //   "</div>" +
+  // "</div>" +
+  // "<div class='row'>" +
+  //   "<div class='col s12 m5'>" +
+  //   "<div class=card small" +
+  //     "<span class='card-title'>Emotional Stability: " + response["emotional_stability"] + "/20</span>" +
+  //       "<div class='card-content teal lighten-3'>" +
+  //         "<span class='white-text'>" +
+  //           "<p>A score of ____ is considered ____. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
+  //         "</span>" +
+  //       "</div>" +
+  //     "</div>" +
+  //   "</div>" +
+  //   "<div class='col s12 m5'>" +
+  //   "<div class=card small" +
+  //     "<span class='card-title'>Intellect: " + response["intellect"] + "/20</span>" +
+  //       "<div class='card-content teal lighten-3'>" +
+  //         "<span class='white-text'>" +
+  //           "<p>A score of ____ is considered ____. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
+  //         "</span>" +
+  //       "</div>" +
+  //     "</div>" +
+  //   "</div>" +
+  // "</div>" +
+  // "<div class='row'>" +
+  //   "<div class='col s12 m5'>" +
+  //   "<div class=card small" +
+  //     "<span class='card-title'>Conscientiousness: " + response["Conscientiousness"] + "/20</span>" +
+  //       "<div class='card-content teal lighten-3'>" +
+  //         "<span class='white-text'>" +
+  //           "<p>A score of ____ is considered ____. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection. </p>" +
+  //         "</span>" +
+  //       "</div>" +
+  //     "</div>" +
+  //   "</div>" +
+  // "</div>")
+
+
+
+
   // "<div class='row'>" +
   //   "<div class='col s12 m5'>" +
   //   "<span class='card-title'> Extraversion:</span>" +
@@ -115,6 +165,19 @@ function showResults(response) {
   //   "</div>" +
   // "</div>")
   console.log(response)
+}
+
+function rateScore(score){
+  if (score < "7") {
+    rating = "low"
+  }
+  else if (score < "14") {
+    rating = "moderate"
+  }
+  else {
+    rating = "high"
+  }
+  return rating
 }
 
 function getRandomCat(){
