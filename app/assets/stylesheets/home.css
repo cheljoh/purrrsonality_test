@@ -21,3 +21,25 @@ html {
 .form {
   white-space: nowrap;
 }
+
+.card-center {
+  margin: auto;
+}
+
+.factor-title {
+  font-size: 18px;
+}
+
+.card-panel {
+  width: 350px;
+  height: 225px;
+}
+
+.cat-results-picture{
+  text-align: center;
+  display: block;
+}
+
+.cat-description{
+  font-size: 18px;
+}
