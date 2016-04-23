@@ -32,7 +32,7 @@
         1,
         null,
         1,
-        8,
+        13,
         null,
         null
       ],
@@ -51,15 +51,8 @@
         1,
         null,
         null
-      ],
-      "/Users/chelseajohnson/Documents/turing/3module/purrrsonality_test/app/controllers/questions_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        0
       ]
     },
-    "timestamp": 1461385415
+    "timestamp": 1461452484
   }
 }
