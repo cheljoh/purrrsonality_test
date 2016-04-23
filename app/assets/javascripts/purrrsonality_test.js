@@ -8,8 +8,8 @@ $(document).ready(function(){
 });
 
 function radioInput() {
-  if (typeof results == "undefined") { //check to make sure there are 50  keys, corresponds to a number
-    results = {} //clean up methods, make "take a test" disappear, make test disappear after submit. Capybara personality test?
+  if (typeof results == "undefined") {
+    results = {}
   }
   var questionId = $(this).attr('name')
   var answerValue = $(this).attr('value')
@@ -18,16 +18,14 @@ function radioInput() {
 
 function postData(){
 
-
-  //check for keys if present, do ajax, else, reload
-  var location = "https://purrrsonalitytest.herokuapp.com/"//"http://localhost:8888/"
+  var location = "https://purrrsonalitytest.herokuapp.com/"
   var post_data = { "answers": results, "location": location }
   $.ajax({
-    url: "https://personalitytest.herokuapp.com/api/v1/answers",//"http://localhost:3000/api/v1/answers",
+    url: "https://personalitytest.herokuapp.com/api/v1/answers",
     method: "POST",
     dataType: "json",
     data: post_data,
-    success: function(response){ //will get response back
+    success: function(response){
       $(".questions").hide()
       showResults(response)
     },
@@ -63,7 +61,7 @@ function getCat(response){
     var cat = {name: 'Grumpy Cat', picture: "<img src='/assets/grumpy_cat_large.jpg' alt='Grumpy Cat'>", description: "You hate...most things. But sleep and food are cool."}
   }
   else if (attribute == "agreeableness"){
-    var cat = { name: "Lil' Bub", picture: "<img src = '/assets/lil_bub.jpg' alt='Lil Bub'>", description: "You are trusting and love to lap milk" }
+    var cat = { name: "Lil BUB", picture: "<img src = '/assets/lil_bub.jpg' alt='Lil Bub'>", description: "You are trusting and love to lap milk" }
   }
   else if (attribute == "emotional_stability"){
     var cat = { name: "Shironeko", picture: "<img src = '/assets/shironeko.jpg' alt='Shironeko'>", description: "You are super chill and don't mind having things placed on your head" }
