@@ -40,7 +40,7 @@ function postData(){
 function getAttribute(response){
   var highest = 0
   var trait
-  if (response["agreeableness"] < 15) {
+  if (response["agreeableness"] < 5) {
     trait = "low_agreeableness"
   }
   else {
@@ -60,19 +60,19 @@ function getCat(response){
     var cat = { name: "Keyboard Cat", picture: "<iframe src='//giphy.com/embed/10RhccNxPSaglW' width='480' height='348' frameBorder='0' class='giphy-embed' allowFullScreen></iframe><p><a href='http://giphy.com/gifs/keyboard-cat-10RhccNxPSaglW'>via GIPHY</a></p>", description: "You are the life of the party! You also enjoy playing the keyboard and wearing blue shirts." }
   }
   else if (attribute == "low_agreeableness"){
-    var cat = {name: 'Grumpy Cat', picture: "<img src='https://s-media-cache-ak0.pinimg.com/736x/8a/40/b9/8a40b946c47fa2e2db704593ba38d4df.jpg'>", description: "You hate...most things. But sleep and food are cool."}
+    var cat = {name: 'Grumpy Cat', picture: "<img src='/assets/grumpy_cat_large.jpg' alt='Grumpy Cat'>", description: "You hate...most things. But sleep and food are cool."}
   }
   else if (attribute == "agreeableness"){
-    var cat = { name: "Lil' Bub", picture: "<img src = 'http://globaltoynews.typepad.com/.a/6a0133ec87bd6d970b019b00e6c895970b-500wi'>", description: "You are trusting and love to lap milk" }
+    var cat = { name: "Lil' Bub", picture: "<img src = '/assets/lil_bub.jpg' alt='Lil Bub'>", description: "You are trusting and love to lap milk" }
   }
   else if (attribute == "emotional_stability"){
-    var cat = { name: "Shironeko", picture: "<img src = 'http://www.unicas.pe/portal/images/images_articles/500x500Shironeko.jpg'>", description: "You are super chill and don't mind having things placed on your head" }
+    var cat = { name: "Shironeko", picture: "<img src = '/assets/shironeko.jpg' alt='Shironeko'>", description: "You are super chill and don't mind having things placed on your head" }
   }
   else if (attribute == "intellect"){
-    var cat = { name: "Newspaper Kitteh", picture: "<img src = 'http://www.kentcatteries.co.uk/img/smart.jpg'>", description: "You are inquisitive and embody a curious cat. Just don't get killed!" }
+    var cat = { name: "Newspaper Kitteh", picture: "<img src = '/assets/smart_cat.jpg'>", description: "You are inquisitive and embody a curious cat. Just don't get killed!" }
   }
   else if (attribute == "conscientiousness"){
-    cat = { name: "Colonel Meow", picutre: "<img src = 'https://pbs.twimg.com/profile_images/3224911561/b4fdd5d4a95811c70cec1db1c1130389.jpeg'>", description: "You are organized and get shit done. And look really cool while doing it." }
+    cat = { name: "Colonel Meow", picture: "<img src = '/assets/colonel_meow.jpeg'>", description: "You are organized and get shit done. And look really cool while doing it." }
   }
   return cat
 }
