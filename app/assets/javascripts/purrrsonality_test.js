@@ -28,8 +28,6 @@ function postData(){
     dataType: "json",
     data: post_data,
     success: function(response){ //will get response back
-      // console.log("it worked")
-      // console.log(response)//get results
       $(".questions").hide()
       showResults(response)
     },
@@ -39,19 +37,64 @@ function postData(){
   })
 }
 
+function getAttribute(response){
+  var highest = 0
+  var trait
+  if (response["agreeableness"] < 15) {
+    trait = "low_agreeableness"
+  }
+  else {
+    $.each(response, function(key, value){
+      if (value > highest){
+        highest = value
+        trait = key
+      }
+    });
+  }
+  return trait
+}
+
+function getCat(response){
+  var attribute = getAttribute(response)
+  if (attribute == "extraversion") {
+    var cat = { name: "Keyboard Cat", picture: "<iframe src='//giphy.com/embed/10RhccNxPSaglW' width='480' height='348' frameBorder='0' class='giphy-embed' allowFullScreen></iframe><p><a href='http://giphy.com/gifs/keyboard-cat-10RhccNxPSaglW'>via GIPHY</a></p>", description: "You are the life of the party! You also enjoy playing the keyboard and wearing blue shirts." }
+  }
+  else if (attribute == "low_agreeableness"){
+    var cat = {name: 'Grumpy Cat', picture: "<img src='https://s-media-cache-ak0.pinimg.com/736x/8a/40/b9/8a40b946c47fa2e2db704593ba38d4df.jpg'>", description: "You hate...most things. But sleep and food are cool."}
+  }
+  else if (attribute == "agreeableness"){
+    var cat = { name: "Lil' Bub", picture: "<img src = 'http://globaltoynews.typepad.com/.a/6a0133ec87bd6d970b019b00e6c895970b-500wi'>", description: "You are trusting and love to lap milk" }
+  }
+  else if (attribute == "emotional_stability"){
+    var cat = { name: "Shironeko", picture: "<img src = 'http://www.unicas.pe/portal/images/images_articles/500x500Shironeko.jpg'>", description: "You are super chill and don't mind having things placed on your head" }
+  }
+  else if (attribute == "intellect"){
+    var cat = { name: "Newspaper Kitteh", picture: "<img src = 'http://www.kentcatteries.co.uk/img/smart.jpg'>", description: "You are inquisitive and embody a curious cat. Just don't get killed!" }
+  }
+  else if (attribute == "conscientiousness"){
+    cat = { name: "Colonel Meow", picutre: "<img src = 'https://pbs.twimg.com/profile_images/3224911561/b4fdd5d4a95811c70cec1db1c1130389.jpeg'>", description: "You are organized and get shit done. And look really cool while doing it." }
+  }
+  return cat
+}
+
 function showResults(response) {
+  cat = getCat(response)
   $(".information")
     .html(
-      "<div class='cat-results-picture'>" +
-        "<h3>Your Internet Cat Match is...</h3>" +
-        "<h4>GRUMPY CAT!!!</h4>" +
-        "<img src='https://s-media-cache-ak0.pinimg.com/736x/8a/40/b9/8a40b946c47fa2e2db704593ba38d4df.jpg'>" +
-        "<p class='cat-description'>You are stubborn to a fault and hate Mondays. But, you know how to treat your friends well.</p>" +
-      "<div><br>" +
-      "<br><div class='center-align'><button class='facebook button btn cyan accent-4'>Share on Facebook!</button></div><br><br>")
+      catMatchInfo(cat))
   $(".information")
   .append(
     resultCards(response))
+}
+
+function catMatchInfo(cat){
+  return "<div class='cat-results-picture'>" +
+    "<h3>Your Internet Cat Match is...</h3>" +
+    "<h4>" + cat.name + "</h4>" +
+    cat.picture +
+    "<p class='cat-description'>" + cat.description + "</p>" +
+  "<div><br>" +
+  "<br><div class='center-align'><button class='facebook button btn cyan accent-4'>Share on Facebook!</button></div><br><br>"
 }
 
 function rateScore(score){
