@@ -9,12 +9,11 @@
 <body>
   <%= render partial: "shared/navbar" %>
 
+
 <div class="container">
-  <% flash.each do |type, message| %>
-    <div class="<%= type %>">
-      <%= raw(message)%>
-    </div>
-  <% end %>
+  <div class="flash">
+    <h5>Please complete all questions!</h5>
+  </div>
 </div>
 
 <!-- <div class='row'>

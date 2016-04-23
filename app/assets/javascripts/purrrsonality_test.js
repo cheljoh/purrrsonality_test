@@ -47,22 +47,28 @@ function radioInput() {
 }
 
 function postData(){
-
-  var location = "https://purrrsonalitytest.herokuapp.com/"
-  var post_data = { "answers": results, "location": location }
-  $.ajax({
-    url: "https://personalitytest.herokuapp.com/api/v1/answers",
-    method: "POST",
-    dataType: "json",
-    data: post_data,
-    success: function(response){
-      $(".questions").hide()
-      showResults(response)
-    },
-    error: function(){
-    console.log("Something went wrong")
-    }
-  })
+  if (Object.keys(results).length != 50) {
+    $(".flash").show()
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  }
+  else {
+    $(".flash").hide()
+    var location = "http://localhost:3000/"//"https://purrrsonalitytest.herokuapp.com/"
+    var post_data = { "answers": results, "location": location }
+    $.ajax({
+      url: "https://personalitytest.herokuapp.com/api/v1/answers",
+      method: "POST",
+      dataType: "json",
+      data: post_data,
+      success: function(response){
+        $(".questions").hide()
+        showResults(response)
+      },
+      error: function(){
+      console.log("Something went wrong")
+      }
+    })
+  }
 }
 
 function showResults(response) {
