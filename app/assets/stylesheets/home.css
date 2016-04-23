@@ -22,12 +22,15 @@ html {
   white-space: nowrap;
 }
 
-.card-style {
+.card-center {
   margin: auto;
-  width: 200px;
-  height: 300px;
 }
 
 .factor-title {
   font-size: 18px;
+}
+
+.card-panel {
+  width: 350px;
+  height: 225px;
 }
