@@ -20,10 +20,10 @@ function postData(){
 
 
   //check for keys if present, do ajax, else, reload
-  var location = "http://localhost:8888/"
+  var location = "https://purrrsonalitytest.herokuapp.com/"//"http://localhost:8888/"
   var post_data = { "answers": results, "location": location }
   $.ajax({
-    url: "http://localhost:3000/api/v1/answers",
+    url: "https://personalitytest.herokuapp.com/api/v1/answers",//"http://localhost:3000/api/v1/answers",
     method: "POST",
     dataType: "json",
     data: post_data,
@@ -40,7 +40,7 @@ function postData(){
 function getAttribute(response){
   var highest = 0
   var trait
-  if (response["agreeableness"] < 5) {
+  if (response["agreeableness"] < 17) {
     trait = "low_agreeableness"
   }
   else {
@@ -127,7 +127,7 @@ function getRandomCat(){
 
 function getQuestions(){
   $.ajax({
-    url: "http://localhost:3000/api/v1/questions", //"https://personalitytest.herokuapp.com/api/v1/questions"
+    url: "https://personalitytest.herokuapp.com/api/v1/questions", //"http://localhost:3000/api/v1/questions"
     method: "GET",
     dataType: "json",
     success: function(questions){
@@ -246,7 +246,7 @@ function resultCards(response){
     "</div>" +
      "<div class='col s4 offset-s1'>" +
        "<div class='card-panel'>" +
-        "<image src='http://cdn.grumpycats.com/wp-content/uploads/2012/09/GC-Gravatar-copy.png'> You - 0/50</image>" +
+        "<image src='/assets/grumpy_cat.png'> You - 0/50</image>" +
       "</div>" +
     "</div>" +
   "</div>"
