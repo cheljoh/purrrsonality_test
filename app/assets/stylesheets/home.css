@@ -34,3 +34,12 @@ html {
   width: 350px;
   height: 225px;
 }
+
+.cat-results-picture{
+  text-align: center;
+  display: block;
+}
+
+.cat-description{
+  font-size: 18px;
+}

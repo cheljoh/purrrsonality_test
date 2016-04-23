@@ -41,58 +41,17 @@ function postData(){
 
 function showResults(response) {
   $(".information")
-  .html(
-    "<div class='row'>" +
-       "<div class='col s4 offset-s1'>" +
-         "<div class='card-panel pink lighten-2'>" +
-           "<span class='white-text'>" +
-             "<p class='factor-title'>Extraversion:  " + response["extraversion"] + "/50</p>" +
-             "<p>A score of " + response["extraversion"] + " is considered " + rateScore(response["extraversion"]) + ". Extraversion measures the degree people seek the presence of others. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection.</p>" +
-           "</span>" +
-          "</div>" +
-        "</div>" +
-       "<div class='col s4 offset-s1'>" +
-         "<div class='card-panel purple lighten-2'>" +
-           "<span class='white-text'>" +
-             "<p class='factor-title'>Conscientiousness: " + response["conscientiousness"] + "/50</p>" +
-             "<p>A score of " + response["conscientiousness"] + " is considered " + rateScore(response["conscientiousness"]) + ". Conscientiousness measures organization. Individuals with a high score may be seen as obsessive, while individudals with a low score may be more spontaneous but less dependable.</p>" +
-          "</span>" +
-        "</div>" +
-      "</div>" +
-    "</div>" +
-    "<div class='row'>" +
-       "<div class='col s4 offset-s1'>" +
-         "<div class='card-panel green lighten-2'>" +
-          "<span class='white-text'>" +
-            "<p class='factor-title'>Intellect/Imagination:  " + response["intellect"] + "/50</p>" +
-            "<p>A score of " + response["intellect"] + " is considered " + rateScore(response["intellect"]) + ". Intellect measures one's curiosity and imagination. Individuals with high scores are more likely to seek extreme experiences (e.g., skydiving), while individudals with low scores are more pragmatic. </p>" +
-          "</span>" +
-        "</div>" +
-      "</div>" +
-       "<div class='col s4 offset-s1'>" +
-         "<div class='card-panel cyan lighten-2'>" +
-          "<span class='white-text'>" +
-            "<p class='factor-title'>Emotional Stability:  " + response["emotional_stability"] + "/50</p>" +
-            "<p>A score of " + response["emotional_stability"] + " is considered " + rateScore(response["emotional_stability"]) + ". Emotional stability measures the tendency to experience unpleasant emotions. Calm personalities are associated with high scores, while excitable personalities are associated with low scores.</p>" +
-          "</span>" +
-        "</div>" +
-      "</div>" +
-    "</div>" +
-    "<div class='row'>" +
-      "<div class='col s4 offset-s1'>" +
-        "<div class='card-panel orange lighten-2'>" +
-        "<span class='white-text'>" +
-          "<p class='factor-title'>Agreeableness:  " + response["agreeableness"] + "/50</p>" +
-          "<p>A score of " + response["agreeableness"] + " is considered " + rateScore(response["agreeableness"]) + ". Agreeabless measures how trusting and cooperative one is. A high score is associated with naivete, while individuals with low scores may be perceived as competitive or not trusting of others.</p>" +
-        "</span>" +
-        "</div>" +
-      "</div>" +
-       "<div class='col s4 offset-s1'>" +
-         "<div class='card-panel'>" +
-          "<image src='http://cdn.grumpycats.com/wp-content/uploads/2012/09/GC-Gravatar-copy.png'> You - 0/50</image>" +
-        "</div>" +
-      "</div>" +
-    "</div>")
+    .html(
+      "<div class='cat-results-picture'>" +
+        "<h3>Your Internet Cat Match is...</h3>" +
+        "<h4>GRUMPY CAT!!!</h4>" +
+        "<img src='https://s-media-cache-ak0.pinimg.com/736x/8a/40/b9/8a40b946c47fa2e2db704593ba38d4df.jpg'>" +
+        "<p class='cat-description'>You are stubborn to a fault and hate Mondays. But, you know how to treat your friends well.</p>" +
+      "<div><br>" +
+      "<br><div class='center-align'><button class='facebook button btn cyan accent-4'>Share on Facebook!</button></div><br><br>")
+  $(".information")
+  .append(
+    resultCards(response))
 }
 
 function rateScore(score){
@@ -193,4 +152,59 @@ function questionOptions() {
 
 function hideButton(){
   $("button[name=get-questions]").hide()
+}
+
+function resultCards(response){
+  return "<div class='row'>" +
+      "<h4 class='center-align'>FIVE FACTOR PERSONALITY TEST RESULTS</h4>" +
+     "<div class='col s4 offset-s1'>" +
+       "<div class='card-panel pink lighten-2'>" +
+         "<span class='white-text'>" +
+           "<p class='factor-title'>Extraversion:  " + response["extraversion"] + "/50</p>" +
+           "<p>A score of " + response["extraversion"] + " is considered " + rateScore(response["extraversion"]) + ". Extraversion measures the degree people seek the presence of others. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection.</p>" +
+         "</span>" +
+        "</div>" +
+      "</div>" +
+     "<div class='col s4 offset-s1'>" +
+       "<div class='card-panel purple lighten-2'>" +
+         "<span class='white-text'>" +
+           "<p class='factor-title'>Conscientiousness: " + response["conscientiousness"] + "/50</p>" +
+           "<p>A score of " + response["conscientiousness"] + " is considered " + rateScore(response["conscientiousness"]) + ". Conscientiousness measures organization. Individuals with a high score may be seen as obsessive, while individudals with a low score may be more spontaneous but less dependable.</p>" +
+        "</span>" +
+      "</div>" +
+    "</div>" +
+  "</div>" +
+  "<div class='row'>" +
+     "<div class='col s4 offset-s1'>" +
+       "<div class='card-panel green lighten-2'>" +
+        "<span class='white-text'>" +
+          "<p class='factor-title'>Intellect/Imagination:  " + response["intellect"] + "/50</p>" +
+          "<p>A score of " + response["intellect"] + " is considered " + rateScore(response["intellect"]) + ". Intellect measures one's curiosity and imagination. Individuals with high scores are more likely to seek extreme experiences (e.g., skydiving), while individudals with low scores are more pragmatic. </p>" +
+        "</span>" +
+      "</div>" +
+    "</div>" +
+     "<div class='col s4 offset-s1'>" +
+       "<div class='card-panel cyan lighten-2'>" +
+        "<span class='white-text'>" +
+          "<p class='factor-title'>Emotional Stability:  " + response["emotional_stability"] + "/50</p>" +
+          "<p>A score of " + response["emotional_stability"] + " is considered " + rateScore(response["emotional_stability"]) + ". Emotional stability measures the tendency to experience unpleasant emotions. Calm personalities are associated with high scores, while excitable personalities are associated with low scores.</p>" +
+        "</span>" +
+      "</div>" +
+    "</div>" +
+  "</div>" +
+  "<div class='row'>" +
+    "<div class='col s4 offset-s1'>" +
+      "<div class='card-panel orange lighten-2'>" +
+      "<span class='white-text'>" +
+        "<p class='factor-title'>Agreeableness:  " + response["agreeableness"] + "/50</p>" +
+        "<p>A score of " + response["agreeableness"] + " is considered " + rateScore(response["agreeableness"]) + ". Agreeabless measures how trusting and cooperative one is. A high score is associated with naivete, while individuals with low scores may be perceived as competitive or not trusting of others.</p>" +
+      "</span>" +
+      "</div>" +
+    "</div>" +
+     "<div class='col s4 offset-s1'>" +
+       "<div class='card-panel'>" +
+        "<image src='http://cdn.grumpycats.com/wp-content/uploads/2012/09/GC-Gravatar-copy.png'> You - 0/50</image>" +
+      "</div>" +
+    "</div>" +
+  "</div>"
 }
