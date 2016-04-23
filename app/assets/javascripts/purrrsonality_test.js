@@ -3,110 +3,9 @@ var results;
 $(document).ready(function(){
   $("button[name=get-cat]").on("click", getRandomCat);
   $("button[name=get-questions]").on("click", getQuestions);
-  $("body").on("click", "button.submit", postData);
   $("body").on("click", "input:radio", radioInput);
+  $("body").on("click", "button.submit", postData);
 });
-
-function radioInput() {
-  if (typeof results == "undefined") {
-    results = {}
-  }
-  var questionId = $(this).attr('name')
-  var answerValue = $(this).attr('value')
-  results[questionId] = answerValue
-}
-
-function postData(){
-
-  var location = "https://purrrsonalitytest.herokuapp.com/"
-  var post_data = { "answers": results, "location": location }
-  $.ajax({
-    url: "https://personalitytest.herokuapp.com/api/v1/answers",
-    method: "POST",
-    dataType: "json",
-    data: post_data,
-    success: function(response){
-      $(".questions").hide()
-      showResults(response)
-    },
-    error: function(){
-    console.log("Something went wrong")
-    }
-  })
-}
-
-function getAttribute(response){
-  var highest = 0
-  var trait
-  if (response["agreeableness"] < 17) {
-    trait = "low_agreeableness"
-  }
-  else {
-    $.each(response, function(key, value){
-      if (value > highest){
-        highest = value
-        trait = key
-      }
-    });
-  }
-  return trait
-}
-
-function getCat(response){
-  var attribute = getAttribute(response)
-  if (attribute == "extraversion") {
-    var cat = { name: "Keyboard Cat", picture: "<iframe src='//giphy.com/embed/10RhccNxPSaglW' width='480' height='348' frameBorder='0' class='giphy-embed' allowFullScreen></iframe><p><a href='http://giphy.com/gifs/keyboard-cat-10RhccNxPSaglW'>via GIPHY</a></p>", description: "You are the life of the party! You also enjoy playing the keyboard and wearing blue shirts." }
-  }
-  else if (attribute == "low_agreeableness"){
-    var cat = {name: 'Grumpy Cat', picture: "<img src='/assets/grumpy_cat_large.jpg' alt='Grumpy Cat'>", description: "You hate...most things. But sleep and food are cool."}
-  }
-  else if (attribute == "agreeableness"){
-    var cat = { name: "Lil BUB", picture: "<img src = '/assets/lil_bub.jpg' alt='Lil Bub'>", description: "You are trusting and love to lap milk" }
-  }
-  else if (attribute == "emotional_stability"){
-    var cat = { name: "Shironeko", picture: "<img src = '/assets/shironeko.jpg' alt='Shironeko'>", description: "You are super chill and don't mind having things placed on your head" }
-  }
-  else if (attribute == "intellect"){
-    var cat = { name: "Newspaper Kitteh", picture: "<img src = '/assets/smart_cat.jpg'>", description: "You are inquisitive and embody a curious cat. Just don't get killed!" }
-  }
-  else if (attribute == "conscientiousness"){
-    cat = { name: "Colonel Meow", picture: "<img src = '/assets/colonel_meow.jpeg'>", description: "You are organized and get shit done. And look really cool while doing it." }
-  }
-  return cat
-}
-
-function showResults(response) {
-  cat = getCat(response)
-  $(".information")
-    .html(
-      catMatchInfo(cat))
-  $(".information")
-  .append(
-    resultCards(response))
-}
-
-function catMatchInfo(cat){
-  return "<div class='cat-results-picture'>" +
-    "<h3>Your Internet Cat Match is...</h3>" +
-    "<h4>" + cat.name + "</h4>" +
-    cat.picture +
-    "<p class='cat-description'>" + cat.description + "</p>" +
-  "<div><br>" +
-  "<br><div class='center-align'><button class='facebook button btn cyan accent-4'>Share on Facebook!</button></div><br><br>"
-}
-
-function rateScore(score){
-  if (score < "17") {
-    rating = "low"
-  }
-  else if (score < "34") {
-    rating = "moderate"
-  }
-  else {
-    rating = "high"
-  }
-  return rating
-}
 
 function getRandomCat(){
   $.ajax({
@@ -136,6 +35,84 @@ function getQuestions(){
     console.log("Something went wrong")
     }
   })
+}
+
+function radioInput() {
+  if (typeof results == "undefined") {
+    results = {}
+  }
+  var questionId = $(this).attr('name')
+  var answerValue = $(this).attr('value')
+  results[questionId] = answerValue
+}
+
+function postData(){
+
+  var location = "https://purrrsonalitytest.herokuapp.com/"
+  var post_data = { "answers": results, "location": location }
+  $.ajax({
+    url: "https://personalitytest.herokuapp.com/api/v1/answers",
+    method: "POST",
+    dataType: "json",
+    data: post_data,
+    success: function(response){
+      $(".questions").hide()
+      showResults(response)
+    },
+    error: function(){
+    console.log("Something went wrong")
+    }
+  })
+}
+
+function showResults(response) {
+  cat = getCat(response)
+  $(".information")
+    .html(
+      catMatchInfo(cat))
+  $(".information")
+  .append(
+    resultCards(response))
+}
+
+function getAttribute(response){
+  var highest = 0
+  var trait
+  if (response["agreeableness"] < 17) {
+    trait = "low_agreeableness"
+  }
+  else {
+    $.each(response, function(key, value){
+      if (value > highest){
+        highest = value
+        trait = key
+      }
+    });
+  }
+  return trait
+}
+
+function catMatchInfo(cat){
+  return "<div class='cat-results-picture'>" +
+    "<h3>Your Internet Cat Match is...</h3>" +
+    "<h4>" + cat.name + "</h4>" +
+    cat.picture +
+    "<p class='cat-description'>" + cat.description + "</p>" +
+  "<div><br>" +
+  "<br><div class='center-align'><button class='facebook button btn cyan accent-4'>Share on Facebook!</button></div><br><br>"
+}
+
+function rateScore(score){
+  if (score < "17") {
+    rating = "low"
+  }
+  else if (score < "34") {
+    rating = "moderate"
+  }
+  else {
+    rating = "high"
+  }
+  return rating
 }
 
 function renderQuestions(questions){
@@ -193,6 +170,29 @@ function questionOptions() {
 
 function hideButton(){
   $("button[name=get-questions]").hide()
+}
+
+function getCat(response){
+  var attribute = getAttribute(response)
+  if (attribute == "extraversion") {
+    var cat = { name: "Keyboard Cat", picture: "<iframe src='//giphy.com/embed/10RhccNxPSaglW' width='480' height='348' frameBorder='0' class='giphy-embed' allowFullScreen></iframe><p><a href='http://giphy.com/gifs/keyboard-cat-10RhccNxPSaglW'>via GIPHY</a></p>", description: "You are the life of the party! You also enjoy playing the keyboard and wearing blue shirts." }
+  }
+  else if (attribute == "low_agreeableness"){
+    var cat = {name: 'Grumpy Cat', picture: "<img src='/assets/grumpy_cat_large.jpg' alt='Grumpy Cat'>", description: "You hate...most things. But sleep and food are cool."}
+  }
+  else if (attribute == "agreeableness"){
+    var cat = { name: "Lil BUB", picture: "<img src = '/assets/lil_bub.jpg' alt='Lil Bub'>", description: "You are trusting and love to lap milk" }
+  }
+  else if (attribute == "emotional_stability"){
+    var cat = { name: "Shironeko", picture: "<img src = '/assets/shironeko.jpg' alt='Shironeko'>", description: "You are super chill and don't mind having things placed on your head" }
+  }
+  else if (attribute == "intellect"){
+    var cat = { name: "Newspaper Kitteh", picture: "<img src = '/assets/smart_cat.jpg'>", description: "You are inquisitive and embody a curious cat. Just don't get killed!" }
+  }
+  else if (attribute == "conscientiousness"){
+    cat = { name: "Colonel Meow", picture: "<img src = '/assets/colonel_meow.jpeg'>", description: "You are organized and get shit done. And look really cool while doing it." }
+  }
+  return cat
 }
 
 function resultCards(response){
