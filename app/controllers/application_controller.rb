@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   end
 
   # def cat
-  #   @cat = Cat.first
+  #   @cat = Cat.last
   # end
 end
