@@ -5,8 +5,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
+
+  <meta property="og:url"           content="http://purrrsonalitytest.herokuapp.com" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="Purrrsonality Test" />
+	<meta property="og:description"   content="See what internet cat you are!" />
+  
 </head>
 <body>
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=1546954142266321";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+
   <%= render partial: "shared/navbar" %>
 
 
