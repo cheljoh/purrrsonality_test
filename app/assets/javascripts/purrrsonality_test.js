@@ -24,7 +24,7 @@ function getRandomCat(){
 
 function getQuestions(){
   $.ajax({
-    url: "https://personalitytest.herokuapp.com/api/v1/questions", //"http://localhost:3000/api/v1/questions"
+    url: "https://personalitytest.herokuapp.com/api/v1/questions",
     method: "GET",
     dataType: "json",
     success: function(questions){
@@ -53,7 +53,7 @@ function postData(){
   }
   else {
     $(".flash").hide()
-    var location = "http://localhost:3000/"//"https://purrrsonalitytest.herokuapp.com/"
+    var location = "https://purrrsonalitytest.herokuapp.com/"
     var post_data = { "answers": results, "location": location }
     $.ajax({
       url: "https://personalitytest.herokuapp.com/api/v1/answers",
