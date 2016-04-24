@@ -104,8 +104,9 @@ function catMatchInfo(cat){
     "<h4>" + cat.name + "</h4>" +
     cat.picture +
     "<p class='cat-description'>" + cat.description + "</p>" +
-  "<div><br>" +
-  "<br><div class='center-align'><button class='facebook button btn cyan accent-4'>Share on Facebook!</button></div><br><br>"
+  "<div><br>"
+  // "<div class='fb-share-button' data-href='http://localhost:3000/' data-layout='button' data-mobile-iframe='true'></div>"
+  // "<br><div class='center-align'><button class='facebook button btn cyan accent-4'>Share on Facebook!</button></div><br><br>"
 }
 
 function rateScore(score){
