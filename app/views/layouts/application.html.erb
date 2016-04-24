@@ -6,13 +6,15 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
 
-  <meta property="og:url"           content="https://purrrsonalitytest.herokuapp.com" />
-  <meta property="fb:app_id"        content="1546954142266321" />
-  <meta property="og:type"          content="website">
+  <% if @cat %>
+    <meta property="og:url"           content="https://purrrsonalitytest.herokuapp.com" />
+    <meta property="fb:app_id"        content="1546954142266321" />
+    <meta property="og:type"          content="website">
 
-	<meta property="og:title"         content= "I got <%= cat.name %>!" />
-	<meta property="og:description"   content="Click the button to find out what internet cat you are!" />
-  <meta property="og:image"         content="<%= cat.picture %>" />
+  	<meta property="og:title"         content= "I got <%= @cat.name %>!" />
+  	<meta property="og:description"   content="Click the button to find out what internet cat you are!" />
+    <meta property="og:image"         content="<%= @cat.picture %>" />
+  <% end %>
 
 </head>
 <body>
