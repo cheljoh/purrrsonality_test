@@ -35,11 +35,17 @@ html {
   height: 225px;
 }
 
-.cat-results-picture{
+.cat-results-picture {
   text-align: center;
   display: block;
 }
 
-.cat-description{
+.cat-description {
   font-size: 18px;
+}
+
+.flash {
+  text-align: center;
+  display: none;
+  color: pink;
 }
