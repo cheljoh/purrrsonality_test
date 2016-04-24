@@ -1,6 +1,7 @@
 require "rails_helper"
 
 RSpec.feature "UserLogsInAndOut", type: :feature do
+  include SpecHelpers
 
   before(:each) do
     Capybara.app = PurrrsonalityTest::Application
@@ -8,6 +9,7 @@ RSpec.feature "UserLogsInAndOut", type: :feature do
   end
 
   scenario "user logs in and out" do
+    make_cats
     visit "/"
     click_on "Sign in with Facebook"
     expect(page).to have_content("chelsea")

@@ -1,7 +1,10 @@
 require "rails_helper"
 
 RSpec.feature "UserMustCompleteEntireTest", type: :feature do
+  include SpecHelpers
+  
   scenario "user only fills out 10 buttons", js: true do
+    make_cats
     visit "/"
     click_on "Take the Test!"
 

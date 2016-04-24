@@ -1,8 +1,10 @@
 require "rails_helper"
 
 RSpec.feature "UserSubmitsTestSpec", type: :feature do
-
+  include SpecHelpers
+  
   scenario "user submits test and scores Shironeko", js: true do
+    make_cats
     visit "/"
     click_on "Take the Test!"
 
@@ -26,6 +28,7 @@ RSpec.feature "UserSubmitsTestSpec", type: :feature do
   end
 
   scenario "user submits test and scores Newspaper Kitteh", js: true do
+    make_cats
     visit "/"
     click_on "Take the Test!"
 
@@ -50,6 +53,7 @@ RSpec.feature "UserSubmitsTestSpec", type: :feature do
   end
 
   scenario "user submits test and scores Grumpy Cat", js: true do
+    make_cats
     visit "/"
     click_on "Take the Test!"
 
@@ -82,6 +86,7 @@ RSpec.feature "UserSubmitsTestSpec", type: :feature do
   end
 
   scenario "user submits test and scores Lil BUB", js: true do
+    make_cats
     visit "/"
     click_on "Take the Test!"
 
@@ -122,6 +127,7 @@ RSpec.feature "UserSubmitsTestSpec", type: :feature do
   end
 
   scenario "user submits test and scores Colonel Meow", js: true do
+    make_cats
     visit "/"
     click_on "Take the Test!"
 
@@ -161,7 +167,8 @@ RSpec.feature "UserSubmitsTestSpec", type: :feature do
     expect(page).to have_content("Agreeableness: 30/50")
   end
 
-  scenario "user submits test and scores Keyboard Cat", js: true do #1-5 11-5 21-5 31-5 41-5
+  scenario "user submits test and scores Keyboard Cat", js: true do
+    make_cats
     visit "/"
     click_on "Take the Test!"
 
