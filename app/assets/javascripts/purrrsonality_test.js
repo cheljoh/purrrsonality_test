@@ -72,6 +72,7 @@ function postData(){
 }
 
 function showResults(response) {
+  FB.XFBML.parse();
   cat = getCat(response)
   $(".information")
     .html(
@@ -107,6 +108,7 @@ function catMatchInfo(cat){
   "<div><br>"
   // "<div class='fb-share-button' data-href='http://localhost:3000/' data-layout='button' data-mobile-iframe='true'></div>"
   // "<br><div class='center-align'><button class='facebook button btn cyan accent-4'>Share on Facebook!</button></div><br><br>"
+  // FB.XFBML.parse();
 }
 
 function rateScore(score){

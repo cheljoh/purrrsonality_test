@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.feature "UserSharesResultsonFacebook", type: :feature do
 
+  #need to change open graph markup-make it dynamic
+
   scenario "user completes test, views results, and shares on facebook", js: true do
     pending
     visit "/"
