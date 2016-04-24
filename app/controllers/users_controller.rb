@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   def update
-    require "pry"; binding.pry
     @cat = Cat.find_by(name: params["cat"])
     # current_user.cat = @cat
     # User.find(current_user.id).update(cat_id: cat.id)
