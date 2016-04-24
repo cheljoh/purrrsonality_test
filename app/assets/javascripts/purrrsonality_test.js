@@ -79,6 +79,11 @@ function showResults(response) {
   $(".information")
   .append(
     resultCards(response))
+  sendToRails(cat)
+}
+
+function sendToRails(cat){
+  $.post("/results?cat=" + cat.name)
 }
 
 function getAttribute(response){
@@ -105,8 +110,6 @@ function catMatchInfo(cat){
     cat.picture +
     "<p class='cat-description'>" + cat.description + "</p>" +
   "<div><br>"
-  // "<div class='fb-share-button' data-href='http://localhost:3000/' data-layout='button' data-mobile-iframe='true'></div>"
-  // "<br><div class='center-align'><button class='facebook button btn cyan accent-4'>Share on Facebook!</button></div><br><br>"
 }
 
 function rateScore(score){
