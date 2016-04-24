@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "UserSubmitsTestSpec", type: :feature do
   include SpecHelpers
-  
+
   scenario "user submits test and scores Shironeko", js: true do
     make_cats
     visit "/"
@@ -118,7 +118,7 @@ RSpec.feature "UserSubmitsTestSpec", type: :feature do
 
     wait_for_ajax
 
-    expect(page).to have_content("Lil BUB")
+    expect(page).to have_content("Lil Bub")
     expect(page).to have_content("Extraversion: 38/50")
     expect(page).to have_content("Conscientiousness: 26/50")
     expect(page).to have_content("Intellect/Imagination: 22/50")
