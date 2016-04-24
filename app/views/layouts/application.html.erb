@@ -6,21 +6,29 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
 
-  <% if content_for?(:meta_og) %>
+  <!-- <% if content_for?(:meta_og) %>
     <%= yield :meta_og %>
-  <% end %>
+  <% end %> -->
 
-  <%= content_for(:meta_og) do %>
+  <!-- <%= content_for(:meta_og) do %> -->
+    <meta property="og:title"         content="<% @default_cat ? "Colonel Meow!": @cat.name %>!" />
+    <meta property="og:image"         content="<%= @cat.picture %>" />
+    <meta property="og:description"   content="<% @default_cat ? "Are you Colonel Meow? Take the test!" : @cat.description %>" />
+    <meta property="og:url"           content="https://purrrsonalitytest.herokuapp.com" />
+    <meta property="fb:app_id"        content= ENV["FACEBOOK_APP_ID"] />
+    <meta property="og:type"          content="website">
+  <!-- <% end %> -->
+
+  <!-- <%= content_for(:meta_og) do %>
     <% if @cat %>
       <meta property="og:title"         content= "I got <%@cat.name%>!" />
       <meta property="og:image"         content="<%= @cat.picture %>" />
       <meta property="og:description"   content="<%= @cat.description %>" />
     <% end %>
-
     <meta property="og:url"           content="https://purrrsonalitytest.herokuapp.com" />
     <meta property="fb:app_id"        content= ENV["FACEBOOK_APP_ID"] />
     <meta property="og:type"          content="website">
-  <% end %>
+  <% end %> -->
 
 </head>
 <body>
