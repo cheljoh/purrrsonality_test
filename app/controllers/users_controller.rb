@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def index
-    @cat = current_user.cat
+    if current_user
+      @cat = current_user.cat
+    else
+      @cat = Cat.find_by(name: "Colonel Meow")
+    end
   end
 
   def update
