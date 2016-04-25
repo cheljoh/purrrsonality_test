@@ -23,9 +23,9 @@ class ApplicationController < ActionController::Base
       og: {
         url: current_url,
         site_name: site_name,
-        title: title,
-        image: image,
-        description: description,
+        title: options[:title] || title,
+        image: options[:image] || image,
+        description: options[:description] || description,
         type: 'website'
       }
     }
