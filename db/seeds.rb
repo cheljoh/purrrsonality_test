@@ -16,7 +16,7 @@ Cat.find_or_create_by(name: "Newspaper Kitteh",
 
 Cat.find_or_create_by(name: "Keyboard Cat",
            description: "You are the life of the party! You also enjoy playing the keyboard and wearing blue shirts.",
-           picture: "https://33.media.tumblr.com/avatar_367d42588d28_128.png")
+           picture: "https://upload.wikimedia.org/wikipedia/en/8/87/Keyboard_cat.jpg")
 
 Cat.find_or_create_by(name: "Colonel Meow",
            description: "You are organized and get shit done. And look really cool while doing it.",
