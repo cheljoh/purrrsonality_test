@@ -5,6 +5,9 @@ RSpec.feature "UserSubmitsTestSpec", type: :feature do
 
   scenario "user submits test and scores Shironeko", js: true do
     make_cats
+    user = User.create(name: "hello")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
     visit "/"
     click_on "Take the Test!"
 
@@ -29,6 +32,9 @@ RSpec.feature "UserSubmitsTestSpec", type: :feature do
 
   scenario "user submits test and scores Newspaper Kitteh", js: true do
     make_cats
+    user = User.create(name: "hello")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
     visit "/"
     click_on "Take the Test!"
 
@@ -54,6 +60,9 @@ RSpec.feature "UserSubmitsTestSpec", type: :feature do
 
   scenario "user submits test and scores Grumpy Cat", js: true do
     make_cats
+    user = User.create(name: "hello")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
     visit "/"
     click_on "Take the Test!"
 
@@ -87,6 +96,9 @@ RSpec.feature "UserSubmitsTestSpec", type: :feature do
 
   scenario "user submits test and scores Lil BUB", js: true do
     make_cats
+    user = User.create(name: "hello")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
     visit "/"
     click_on "Take the Test!"
 
@@ -128,6 +140,9 @@ RSpec.feature "UserSubmitsTestSpec", type: :feature do
 
   scenario "user submits test and scores Colonel Meow", js: true do
     make_cats
+    user = User.create(name: "hello")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
     visit "/"
     click_on "Take the Test!"
 
@@ -169,6 +184,9 @@ RSpec.feature "UserSubmitsTestSpec", type: :feature do
 
   scenario "user submits test and scores Keyboard Cat", js: true do
     make_cats
+    user = User.create(name: "hello")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    
     visit "/"
     click_on "Take the Test!"
 

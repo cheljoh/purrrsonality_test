@@ -74,6 +74,7 @@ function postData(){
 function showResults(response) {
   cat = getCat(response)
   $("html, body").animate({ scrollTop: 0 }, "slow");
+  sendToRails(cat)
   $("#facebook-button").show()
   $(".information")
     .html(
@@ -81,7 +82,6 @@ function showResults(response) {
   $(".information")
   .append(
     resultCards(response))
-  sendToRails(cat)
 }
 
 function sendToRails(cat){
