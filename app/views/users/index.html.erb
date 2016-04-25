@@ -6,14 +6,18 @@
   <div id="facebook-button" class="fb-share-button" data-href="https://purrrsonalitytest.herokuapp.com/" data-layout="button" data-mobile-iframe="true"></div> <br /><br />
 </div>
 
-<% content_for :head do  %>
+<!-- <% if content_for?(:head) %>
+  <%= yield(:head) %>
+<% end %> -->
+
+<!-- <% content_for :head do  %>
   <meta property="og:title"         content="You got Keyboard Cat!" />
   <meta property="og:image"         content="https://33.media.tumblr.com/avatar_367d42588d28_128.png" />
   <meta property="og:description"   content="You like shirts" />
   <meta property="og:url"           content="https://purrrsonalitytest.herokuapp.com/" />
   <meta property="fb:app_id"        content= "<%=ENV['FACEBOOK_APP_ID']%>" />
   <meta property="og:type"          content="website">
-<% end %>
+<% end %> -->
 
 <!-- POST /?id={object-instance-id or object-url}&amp;scrape=true -->
 
