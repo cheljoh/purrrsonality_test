@@ -38,7 +38,10 @@ function getQuestions(){
 }
 
 function radioInput() {
-  if (typeof results == "undefined") {
+  if (typeof results == "undefined") { //set hash when page loads, empty json objects
+                                              //hit rails controller when you hit next
+                                              //multi-page form
+                                              //jquery multi-page form
     results = {}
   }
   var questionId = $(this).attr('name')
