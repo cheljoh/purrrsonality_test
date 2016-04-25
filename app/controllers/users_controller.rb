@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    if current_user
+    if current_user.cat
       @cat = current_user.cat
     else
       @cat = Cat.find_by(name: "Grumpy Cat")
