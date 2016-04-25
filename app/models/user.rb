@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  has_one :cat
 
   def self.from_omniauth(auth)
     where(uid: auth[:uid]).first_or_create do |user|

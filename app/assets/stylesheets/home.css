@@ -50,5 +50,6 @@ html {
   color: pink;
 }
 
-.fb-share-button {
+#facebook-button {
+  display: none;
 }

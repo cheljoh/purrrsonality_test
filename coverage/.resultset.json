@@ -7,11 +7,9 @@
       ],
       "/Users/chelseajohnson/Documents/turing/3module/purrrsonality_test/app/models/cat.rb": [
         1,
-        1,
         null
       ],
       "/Users/chelseajohnson/Documents/turing/3module/purrrsonality_test/app/models/user.rb": [
-        1,
         1,
         null,
         1,
@@ -29,12 +27,9 @@
         1,
         null,
         1,
+        23,
+        9,
         null,
-        null,
-        22,
-        8,
-        null,
-        14,
         null,
         null,
         null,
@@ -46,11 +41,7 @@
         1,
         null,
         1,
-        21,
-        null,
-        null,
-        null,
-        null,
+        23,
         null,
         null
       ],
@@ -69,19 +60,8 @@
         1,
         null,
         null
-      ],
-      "/Users/chelseajohnson/Documents/turing/3module/purrrsonality_test/app/controllers/users_controller.rb": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
       ]
     },
-    "timestamp": 1461540624
+    "timestamp": 1461545395
   }
 }

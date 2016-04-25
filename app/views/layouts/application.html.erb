@@ -6,12 +6,9 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
 
-  <meta property="og:title"         content="You got <%= @cat.name %>!" />
-  <meta property="og:image"         content="<%= @cat.picture %>" />
-  <meta property="og:description"   content="<%= @cat.description%>" />
-  <meta property="og:url"           content="https://purrrsonalitytest.herokuapp.com" />
-  <meta property="fb:app_id"        content= "<%=ENV['FACEBOOK_APP_ID']%>" />
-  <meta property="og:type"          content="website">
+  <% if content_for?(:head) %>
+    <%= yield(:head) %>
+  <% end %>
 
 </head>
 <body>
@@ -71,9 +68,6 @@
        </div>
    </div>
  </div> -->
-
- <!-- <img src = "grumpy_cat_large.jpg"> -->
-
 
 <%= yield %>
 

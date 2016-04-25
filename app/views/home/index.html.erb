@@ -1,12 +1,23 @@
 <div class="container">
   <div class="center-align">
     <h1 >Purrrsonality Test</h1> <br /><br />
-    <div class="fb-share-button" data-href="https://purrrsonalitytest.herokuapp.com" data-layout="button" data-mobile-iframe="true"></div> <br /><br /><br />
-    <button name="get-questions" class="button btn deep-purple lighten-3">Take the Test!</button> <br/> <br /><br />
+    <button name="get-questions" class="button btn deep-purple lighten-3">Take the Test!</button> <br/> <br />
     <div class="left-align information">
     </div>
+    <div id="facebook-button" class="fb-share-button" data-href="https://purrrsonalitytest.herokuapp.com" data-layout="button" data-mobile-iframe="true"></div> <br /><br />
     <button name="get-cat" class="button btn deep-purple lighten-3">Generate Random Cat Gif!</button><br /><br />
     <div class="cat-image">
     </div>
   </div>
 </div>
+
+<% if @cat %>
+  <% content_for :head do %>
+    <meta property="og:title"         content="You got <%= @cat.name %>!" />
+    <meta property="og:image"         content="<%= @cat.picture %>" />
+    <meta property="og:description"   content="<%= @cat.description%>" />
+    <meta property="og:url"           content="https://purrrsonalitytest.herokuapp.com" />
+    <meta property="fb:app_id"        content= "<%=ENV['FACEBOOK_APP_ID']%>" />
+    <meta property="og:type"          content="website">
+  <% end %>
+<% end %>

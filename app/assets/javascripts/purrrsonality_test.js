@@ -73,6 +73,7 @@ function postData(){
 
 function showResults(response) {
   cat = getCat(response)
+  $("#facebook-button").show()
   $(".information")
     .html(
       catMatchInfo(cat))
@@ -109,7 +110,7 @@ function catMatchInfo(cat){
     "<h4>" + cat.name + "</h4>" +
     cat.picture +
     "<p class='cat-description'>" + cat.description + "</p>" +
-  "<div><br>"
+  "</div><br><br><br>"
 }
 
 function rateScore(score){
