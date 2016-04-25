@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
     site_name   = "Purrrsonality Test"
     title       = "Make your dreams come true!"
     description = "Find out what internet cat you are!"
-    image       = options[:image] || "/assets/grump_cat.png"
+    image       = options[:image] || "/assets/grumpy_cat.png"
     current_url = request.url
 
     defaults = {
