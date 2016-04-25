@@ -3,7 +3,9 @@
   <h4><%= @cat.name %> </h4>
   <%= image_tag @cat.picture %>
   <p class='cat-description'> <%= @cat.description %> </p>
+  <div id="facebook-button" class="fb-share-button" data-href="https://purrrsonalitytest.herokuapp.com/results" data-layout="button" data-mobile-iframe="true"></div> <br /><br />
 </div>
+
 
 <% content_for :head do  %>
   <meta property="og:title"         content="You got <%= @cat.name %>!" />
