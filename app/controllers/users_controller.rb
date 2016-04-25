@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     if current_user
       @cat = current_user.cat
     else
-      @cat = Cat.find_by(name: "Colonel Meow")
+      @cat = Cat.find_by(name: "Grumpy Cat")
     end
   end
 
