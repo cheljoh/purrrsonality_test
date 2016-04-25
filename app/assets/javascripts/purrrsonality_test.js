@@ -73,6 +73,7 @@ function postData(){
 
 function showResults(response) {
   cat = getCat(response)
+  $("html, body").animate({ scrollTop: 0 }, "slow");
   $("#facebook-button").show()
   $(".information")
     .html(
