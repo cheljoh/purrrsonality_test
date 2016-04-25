@@ -14,6 +14,7 @@ gem 'figaro'
 gem "omniauth-facebook"
 gem 'rails_12factor', group: :production
 gem 'selenium-webdriver'
+gem 'meta-tags'
 
 group :development, :test do
   gem 'rspec'
