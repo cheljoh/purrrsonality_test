@@ -89,6 +89,7 @@ function showResults(response) {
 
 function sendToRails(cat){
   $.post("/results?cat=" + cat.name)
+  $.post("/cat?cat=" + cat.name)
 }
 
 function getAttribute(response){
