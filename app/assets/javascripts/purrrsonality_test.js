@@ -1,10 +1,14 @@
-var results;
+var results
+var minQuestion = 1
+var maxQuestion = 10
 
 $(document).ready(function(){
+  var questions = []
   $("button[name=get-cat]").on("click", getRandomCat);
   $("button[name=get-questions]").on("click", getQuestions);
   $("body").on("click", "input:radio", radioInput);
   $("body").on("click", "button.submit", postData);
+  $("body").on("click", "button.next", incrementQuestionCounter);
 });
 
 function getRandomCat(){
@@ -27,8 +31,10 @@ function getQuestions(){
     url: "https://personalitytest.herokuapp.com/api/v1/questions",
     method: "GET",
     dataType: "json",
-    success: function(questions){
-      renderQuestions(questions)
+    success: function(test_questions){
+      questions = test_questions
+      renderQuestions()
+      questionOptions()
       hideButton()
     },
     error: function(){
@@ -130,53 +136,87 @@ function rateScore(score){
   return rating
 }
 
-function renderQuestions(questions){
+function incrementQuestionCounter() {
+  hidePreviousQuestions() //stop at 50
+  minQuestion += 10
+  maxQuestion += 10
+  renderQuestions()
+}
+
+function hidePreviousQuestions() {
+  for (i = minQuestion; i <= maxQuestion; i++){
+    question_id = "#question-" + i
+    $(question_id).toggle()
+  }
+}
+
+function renderQuestions(){
   $(".information").html()
-  questionOptions()
-  $(questions).each(function(index, test_question){
-    var number1 = (test_question.id + '-1')
-    var number2 = (test_question.id + '-2')
-    var number3 = (test_question.id + '-3')
-    var number4 = (test_question.id + '-4')
-    var number5 = (test_question.id + '-5')
-    var group = (test_question.id)
-  $(".information")
+  console.log(minQuestion)
+  console.log(maxQuestion)
+  for (i = minQuestion; i <= maxQuestion; i++){
+    var number1 = (questions[i].id + '-1')
+    var number2 = (questions[i].id + '-2')
+    var number3 = (questions[i].id + '-3')
+    var number4 = (questions[i].id + '-4')
+    var number5 = (questions[i].id + '-5')
+    var group = (questions[i].id)
+    // var number1 = (test_question.id + '-1')
+    // var number2 = (test_question.id + '-2')
+    // var number3 = (test_question.id + '-3')
+    // var number4 = (test_question.id + '-4')
+    // var number5 = (test_question.id + '-5')
+    // var group = (test_question.id)
+  // $(questions).each(function(index, test_question){
+  //   var number1 = (test_question.id + '-1')
+  //   var number2 = (test_question.id + '-2')
+  //   var number3 = (test_question.id + '-3')
+  //   var number4 = (test_question.id + '-4')
+  //   var number5 = (test_question.id + '-5')
+  //   var group = (test_question.id)
+    //counter for next button keeps track of what questions to get
+  $(".questions")
+  // $(".information")
     .append(
-      "<div class='row'>" +
-        "<div class='col s5 offset-s1'>" +
-          test_question.question +
-        "</div>" +
-        "<div class='col s5 offset-s1'>" +
-          "<div class='responses'>" +
-            "<input name='" + group + "' value = '1' type='radio' id='" + number1 + "'/>" +
-            "<label for='" + number1 + "'>1</label>" +
+      "<div id=question-" + group + ">"  +
+        "<div class='row'>" +
+          "<div class='col s5 offset-s1'>" +
+            questions[i].question +
           "</div>" +
-          "<div class='responses'>" +
-            "<input name='" + group + "' value = '2' type='radio' id='" + number2 + "'/>" +
-            "<label for='" + number2 + "'>2</label>" +
-          "</div>" +
-          "<div class='responses'>" +
-            "<input name='" + group + "' value = '3' type='radio' id='" + number3 + "' />" +
-            "<label for='" + number3 + "'>3</label>" +
-          "</div>" +
-          "<div class='responses'>" +
-            "<input name='" + group + "' value = '4' type='radio' id='" + number4 + "' />" +
-            "<label for='" + number4 + "'>4</label>" +
-          "</div>" +
-          "<div class='responses'>" +
-            "<input name='" + group + "' value = '5' type='radio' id='" + number5 + "' />" +
-            "<label for='" + number5 + "'>5</label>" +
+          "<div class='col s5 offset-s1'>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '1' type='radio' id='" + number1 + "'/>" +
+              "<label for='" + number1 + "'>1</label>" +
+            "</div>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '2' type='radio' id='" + number2 + "'/>" +
+              "<label for='" + number2 + "'>2</label>" +
+            "</div>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '3' type='radio' id='" + number3 + "' />" +
+              "<label for='" + number3 + "'> 3 </label>" +
+            "</div>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '4' type='radio' id='" + number4 + "' />" +
+              "<label for='" + number4 + "'>4</label>" +
+            "</div>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '5' type='radio' id='" + number5 + "' />" +
+              "<label for='" + number5 + "'>5</label>" +
+            "</div>" +
           "</div>" +
         "</div>" +
       "</div>")
-  })
+  }// })
   $(".information")
-  .append("<br><div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div><br><br>")
+  .append(
+    "<br><div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div><br><br>" +
+    "<br><div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div><br><br>") //hide this until all questions are complete
 }
 
 function questionOptions() {
   $(".information")
-    .append(
+    .prepend(
       "<div class='center-align'>" +
         "<p> 1 = Inaccurate <span class='tab-space'> 2 = Somewhat Inaccurate </span> <span class='tab-space'> 3 = Neutral </span> <span class='tab-space'> 4 = Somewhat Accurate </span> <span class='tab-space'> 5 = Accurate</p></span>" +
       "</div>" +
