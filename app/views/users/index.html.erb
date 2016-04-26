@@ -1,10 +1,6 @@
-<div class='cat-results-picture'>
-  <h3>Your Internet Cat Match is...</h3>
-  <h4><%= @cat.name %> </h4>
-  <%= image_tag @cat.picture %>
-  <p class='cat-description'> <%= @cat.description %> </p>
-  <!-- <div id="facebook-button" class="fb-share-button" data-href="https://purrrsonalitytest.herokuapp.com/results" data-layout="button" data-mobile-iframe="false"></div> <br /><br /> -->
-</div>
+<%= render partial: "shared/cat_results" %>
+
+<!-- <div id="facebook-button" class="fb-share-button" data-href="https://purrrsonalitytest.herokuapp.com/results" data-layout="button" data-mobile-iframe="false"></div> <br /><br /> -->
 
 <!-- <% if content_for?(:head) %>
   <%= yield(:head) %>

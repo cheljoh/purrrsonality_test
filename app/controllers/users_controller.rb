@@ -1,14 +1,13 @@
 class UsersController < ApplicationController
   def index
-    # if current_user.cat
-      @cat = Cat.find_by(name: "Colonel Meow")
-      # @cat = current_user.cat
-      prepare_meta_tags(title: @cat.name,
-                        description: @cat.description,
-                        image: @cat.picture)
-    # else
-    #   @cat = Cat.find_by(name: "Grumpy Cat")
-    # end
+    if current_user.cat
+      @cat = current_user.cat
+    else
+      @cat = Cat.find_by(name: "Grumpy Cat")
+    end
+    prepare_meta_tags(title: @cat.name,
+                      description: @cat.description,
+                      image: @cat.picture)
   end
 
   def update
