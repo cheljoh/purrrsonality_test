@@ -3,8 +3,7 @@
     <%= link_to image_tag("neko.png", class: "brand-logo"), "/" %>
     <ul class="right hide-on-med-and-down">
       <% if current_user %>
-        <li><%= current_user.name %></li>
-        <li><%#= link_to "#{current_user.name}", user_path(current_user) %> </li>
+        <li><%= link_to "#{current_user.name}", results_path %> </li>
         <li><%= link_to "Logout", logout_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Sign in with Facebook", "/auth/facebook" %></li>

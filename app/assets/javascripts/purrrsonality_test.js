@@ -130,6 +130,7 @@ function rateScore(score){
 }
 
 function incrementQuestionCounter() {
+  debugger
   $(".flash").hide()
   hidePreviousQuestions()
   minQuestion += 10
