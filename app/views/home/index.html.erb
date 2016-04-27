@@ -1,13 +1,14 @@
 <div class="container">
   <div class="center-align">
-    <h1 >Purrrsonality Test</h1> <br /><br />
-    <button name="get-questions" class="button btn deep-purple lighten-3">Take the Test!</button> <br/> <br />
+    <h1 >Purrrsonality Test</h1><br>
+    <button name="get-questions" id="get-questions"class="button btn deep-purple lighten-3">Take the Test!</button> <br/> <br />
+    <%= render partial: "shared/loader_gif" %>
     <div class="left-align information">
       <div class="questions">
       </div>
     </div>
     <div class="facebook">
-    </div>
+    </div><br>
     <button name="get-cat" class="button btn deep-purple lighten-3">Generate Random Cat Gif!</button><br /><br />
     <div class="cat-image">
     </div>

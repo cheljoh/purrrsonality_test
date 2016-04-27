@@ -28,15 +28,19 @@ function getRandomCat(){
 }
 
 function getQuestions(){
+    hideGetQuestionsButton()
   $.ajax({
     url: "https://personalitytest.herokuapp.com/api/v1/questions",
     method: "GET",
     dataType: "json",
+    beforeSend: function(){
+      $('.circle').show()
+    },
     success: function(test_questions){
       questions = test_questions
       renderQuestions()
       questionOptions()
-      hideButton()
+      $('.circle').hide()
     },
     error: function(){
     console.log("Something went wrong")
@@ -56,6 +60,7 @@ function radioInput() {
 function postData(){
   var location = "https://purrrsonalitytest.herokuapp.com/"
   var post_data = { "answers": results, "location": location }
+  hideSubmitButton()
   $.ajax({
     url: "https://personalitytest.herokuapp.com/api/v1/answers",
     method: "POST",
@@ -69,6 +74,11 @@ function postData(){
     console.log("Something went wrong")
     }
   })
+}
+
+function hideSubmitButton(){
+  $(".submit").hide()
+
 }
 
 function showResults(response) {
@@ -139,7 +149,6 @@ function rateScore(score){
 }
 
 function incrementQuestionCounter() {
-  debugger
   $(".flash").hide()
   hidePreviousQuestions()
   minQuestion += 10
@@ -155,7 +164,7 @@ function hidePreviousQuestions() {
     question_id = "#question-" + (i + 1)
     $(question_id).toggle()
   }
-  $(".next").remove()
+  $(".next").hide()
 }
 
 function renderQuestions(){
@@ -199,10 +208,14 @@ function renderQuestions(){
         "</div>" +
       "</div>")
   }
+  nextButton(group)
+}
+
+function nextButton(group){
   if (group < 50){
-    $(".information")
+    $(".questions")
     .append(
-      "<br><div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div><br><br>")
+      "<div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div>")
   }
 }
 
@@ -219,7 +232,7 @@ function checkCompletion(){
 function submitButton(){
   $(".information")
   .append(
-    "<br><div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div><br><br>")
+    "<div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div>")
 }
 
 function questionOptions() {
@@ -231,7 +244,7 @@ function questionOptions() {
       "<br>")
 }
 
-function hideButton(){
+function hideGetQuestionsButton(){
   $("button[name=get-questions]").hide()
 }
 
