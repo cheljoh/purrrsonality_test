@@ -4,9 +4,24 @@
     <button name="get-questions" class="button btn deep-purple lighten-3">Take the Test!</button> <br/> <br />
     <div class="left-align information">
     </div>
-    <div id="facebook-button" class="fb-share-button"
-      data-href="https://purrrsonalitytest.herokuapp.com/<%= @cat.name %>" data-layout="button" data-mobile-iframe="false">
-    </div> <br /><br />
+    <% if current_user && current_user.cat %>
+      <div id="facebook-button" class="fb-share-button"
+        data-href="https://purrrsonalitytest.herokuapp.com/<%= current_user.cat.name %>" data-layout="button" data-mobile-iframe="false">
+      </div> <br /><br />
+    <% else %>
+      <div id="facebook-button" class="fb-share-button"
+        data-href="https://purrrsonalitytest.herokuapp.com/" data-layout="button" data-mobile-iframe="false">
+      </div> <br /><br />
+    <% end %>
+    <!-- <% if @cat %>
+      <div id="facebook-button" class="fb-share-button"
+        data-href="https://purrrsonalitytest.herokuapp.com/<%= @cat.name %>" data-layout="button" data-mobile-iframe="false">
+      </div> <br /><br />
+    <% else %>
+      <div id="facebook-button" class="fb-share-button"
+        data-href="https://purrrsonalitytest.herokuapp.com/" data-layout="button" data-mobile-iframe="false">
+      </div> <br /><br />
+    <% end %> -->
     <button name="get-cat" class="button btn deep-purple lighten-3">Generate Random Cat Gif!</button><br /><br />
     <div class="cat-image">
     </div>

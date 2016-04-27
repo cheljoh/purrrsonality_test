@@ -14,26 +14,26 @@
       <img src="./assets/0.10.0/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2016-04-26T18:09:46-06:00">2016-04-26T18:09:46-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2016-04-26T19:56:19-06:00">2016-04-26T19:56:19-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">46.94%</span></span>
+    (<span class="covered_percent"><span class="red">45.26%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         3.0
+         2.64
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>13</b> files in total.
-    <b>98</b> relevant lines. 
-    <span class="green"><b>46</b> lines covered</span> and
+    <b>95</b> relevant lines. 
+    <span class="green"><b>43</b> lines covered</span> and
     <span class="red"><b>52</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -57,7 +57,7 @@
         <td>15</td>
         <td>15</td>
         <td>0</td>
-        <td>12.6</td>
+        <td>13.3</td>
       </tr>
       
       <tr>
@@ -83,11 +83,11 @@
       <tr>
         <td class="strong"><a href="#ab2ad17a760c1af7d064091f3a7de3956f20bca4" class="src_link" title="app/controllers/home_controller.rb">app/controllers/home_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>10</td>
         <td>5</td>
-        <td>5</td>
+        <td>2</td>
+        <td>2</td>
         <td>0</td>
-        <td>11.6</td>
+        <td>1.0</td>
       </tr>
       
       <tr>
@@ -147,7 +147,7 @@
         <td>10</td>
         <td>6</td>
         <td>4</td>
-        <td>2.7</td>
+        <td>2.9</td>
       </tr>
       
       <tr>
@@ -189,19 +189,19 @@
           <div class="file_list_container" id="Controllers">
   <h2>
     <span class="group_name">Controllers</span>
-    (<span class="covered_percent"><span class="red">39.53%</span></span>
+    (<span class="covered_percent"><span class="red">37.35%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         3.28
+         2.87
        </span>
     </span> hits/line)
   </h2>
   <a name="Controllers"></a>
   <div>
     <b>10</b> files in total.
-    <b>86</b> relevant lines. 
-    <span class="green"><b>34</b> lines covered</span> and
+    <b>83</b> relevant lines. 
+    <span class="green"><b>31</b> lines covered</span> and
     <span class="red"><b>52</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -225,7 +225,7 @@
         <td>15</td>
         <td>15</td>
         <td>0</td>
-        <td>12.6</td>
+        <td>13.3</td>
       </tr>
       
       <tr>
@@ -251,11 +251,11 @@
       <tr>
         <td class="strong"><a href="#ab2ad17a760c1af7d064091f3a7de3956f20bca4" class="src_link" title="app/controllers/home_controller.rb">app/controllers/home_controller.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>10</td>
         <td>5</td>
-        <td>5</td>
+        <td>2</td>
+        <td>2</td>
         <td>0</td>
-        <td>11.6</td>
+        <td>1.0</td>
       </tr>
       
       <tr>
@@ -315,7 +315,7 @@
         <td>10</td>
         <td>6</td>
         <td>4</td>
-        <td>2.7</td>
+        <td>2.9</td>
       </tr>
       
     </tbody>
@@ -598,8 +598,8 @@
           <code class="ruby">  def current_user</code>
         </li>
       
-        <li class="covered" data-hits="7" data-linenumber="7">
-          <span class="hits">7</span>
+        <li class="covered" data-hits="17" data-linenumber="7">
+          <span class="hits">17</span>
           
           <code class="ruby">    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]</code>
         </li>
@@ -925,8 +925,8 @@
     <h3>app/controllers/home_controller.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>5</b> relevant lines. 
-      <span class="green"><b>5</b> lines covered</span> and
+      <b>2</b> relevant lines. 
+      <span class="green"><b>2</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -952,43 +952,13 @@
           <code class="ruby">  def index</code>
         </li>
       
-        <li class="covered" data-hits="28" data-linenumber="4">
-          <span class="hits">28</span>
-          
-          <code class="ruby">    if params.has_key?(&quot;cat&quot;)</code>
-        </li>
-      
-        <li class="covered" data-hits="7" data-linenumber="5">
-          <span class="hits">7</span>
-          
-          <code class="ruby">      @cat = Cat.find_by(name: params[&quot;cat&quot;])</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="6">
-          
-          
-          <code class="ruby">    else</code>
-        </li>
-      
-        <li class="covered" data-hits="21" data-linenumber="7">
-          <span class="hits">21</span>
-          
-          <code class="ruby">      @cat = Cat.find_by(name: &quot;Colonel Meow&quot;)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="8">
-          
-          
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="9">
+        <li class="never" data-hits="" data-linenumber="4">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="10">
+        <li class="never" data-hits="" data-linenumber="5">
           
           
           <code class="ruby">end</code>
@@ -1456,14 +1426,14 @@
           <code class="ruby">  def update</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="14">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="9" data-linenumber="14">
+          <span class="hits">9</span>
           
           <code class="ruby">    @cat = Cat.find_by(name: params[&quot;cat&quot;])</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="15">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="9" data-linenumber="15">
+          <span class="hits">9</span>
           
           <code class="ruby">    current_user.update(cat_id: @cat.id)</code>
         </li>

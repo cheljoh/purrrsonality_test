@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   root to: "home#index"
 
-  post "/cat", to: "home#index"
-
   get "/results", to: "users#index"
   post "/results", to: "users#update"
 
