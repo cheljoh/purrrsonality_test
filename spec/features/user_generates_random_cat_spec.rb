@@ -6,10 +6,9 @@ RSpec.feature "UserGeneratesRandomCatSpec", type: :feature do
   scenario "user sees a random cat gif", js: true do
     make_cats
     visit "/"
-    expect(page).to have_css("a", count: 2)
-    click_on "Generate Random Cat Gif!"
-    sleep 5
-    wait_for_ajax
     expect(page).to have_css("a", count: 3)
+    click_on "Generate Random Cat Gif!"
+    wait_for_ajax
+    expect(page).to have_css("a", count: 4)
   end
 end

@@ -55,4 +55,16 @@ RSpec.feature "UserCompletesTestAndSeesSavedResults", type: :feature do
 
     expect(page).to have_content("Shironeko")
   end
+
+  scenario "user views results page before taking test" do
+    make_cats
+    user = User.create(name: "Helga")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit "/"
+
+    click_on "Helga"
+
+    expect(page).to have_content("Are you a Grumpy Cat? Take the test to find out!")
+  end
 end
