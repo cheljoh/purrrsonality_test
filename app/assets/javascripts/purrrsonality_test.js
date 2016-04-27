@@ -8,7 +8,7 @@ $(document).ready(function(){
   $("button[name=get-questions]").on("click", getQuestions);
   $("body").on("click", "input:radio", radioInput);
   $("body").on("click", "button.submit", postData);
-  $("body").on("click", "button.next", incrementQuestionCounter);
+  $("body").on("click", "button.next", checkCompletion);//incrementQuestionCounter);
 });
 
 function getRandomCat(){
@@ -56,28 +56,21 @@ function radioInput() {
 }
 
 function postData(){
-  // if (Object.keys(results).length != 50) {
-  //   $(".flash").show()
-  //   $("html, body").animate({ scrollTop: 0 }, "slow");
-  // }
-  // else {
-    $(".flash").hide()
-    var location = "https://purrrsonalitytest.herokuapp.com/"
-    var post_data = { "answers": results, "location": location }
-    $.ajax({
-      url: "https://personalitytest.herokuapp.com/api/v1/answers",
-      method: "POST",
-      dataType: "json",
-      data: post_data,
-      success: function(response){
-        $(".questions").hide()
-        showResults(response)
-      },
-      error: function(){
-      console.log("Something went wrong")
-      }
-    })
-  // }
+  var location = "https://purrrsonalitytest.herokuapp.com/"
+  var post_data = { "answers": results, "location": location }
+  $.ajax({
+    url: "https://personalitytest.herokuapp.com/api/v1/answers",
+    method: "POST",
+    dataType: "json",
+    data: post_data,
+    success: function(response){
+      $(".questions").hide()
+      showResults(response)
+    },
+    error: function(){
+    console.log("Something went wrong")
+    }
+  })
 }
 
 function showResults(response) {
@@ -137,14 +130,14 @@ function rateScore(score){
 }
 
 function incrementQuestionCounter() {
-  hidePreviousQuestions() //stop at 50
+  $(".flash").hide()
+  hidePreviousQuestions()
   minQuestion += 10
   maxQuestion += 10
   if (maxQuestion == 49){
     submitButton()
   }
   renderQuestions()
-  // nextButton()
 }
 
 function hidePreviousQuestions() {
@@ -165,16 +158,7 @@ function renderQuestions(){
     var number4 = (questions[i].id + '-4')
     var number5 = (questions[i].id + '-5')
     var group = (questions[i].id)
-  // $(questions).each(function(index, test_question){
-  //   var number1 = (test_question.id + '-1')
-  //   var number2 = (test_question.id + '-2')
-  //   var number3 = (test_question.id + '-3')
-  //   var number4 = (test_question.id + '-4')
-  //   var number5 = (test_question.id + '-5')
-  //   var group = (test_question.id)
-    //counter for next button keeps track of what questions to get
   $(".questions")
-  // $(".information")
     .append(
       "<div id=question-" + group + ">"  +
         "<div class='row'>" +
@@ -211,17 +195,17 @@ function renderQuestions(){
     .append(
       "<br><div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div><br><br>")
   }
-    // $(".information")
-    // .append(
-    //   "<br><div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div><br><br>")
-    // "<br><div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div><br><br>") //hide this until all questions are complete
 }
 
-// function nextButton(){
-//   $(".information")
-//   .append(
-//     "<br><div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div><br><br>")
-// }
+function checkCompletion(){
+  if (Object.keys(results).length != (maxQuestion + 1)) {
+    $(".flash").show()
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  }
+  else {
+    incrementQuestionCounter()
+  }
+}
 
 function submitButton(){
   $(".information")
