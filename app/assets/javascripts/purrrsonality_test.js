@@ -8,7 +8,8 @@ $(document).ready(function(){
   $("button[name=get-questions]").on("click", getQuestions);
   $("body").on("click", "input:radio", radioInput);
   $("body").on("click", "button.submit", postData);
-  $("body").on("click", "button.next", checkCompletion);//incrementQuestionCounter);
+  $("body").on("click", "button.next", checkCompletion);
+  $("body").on("click", "button.facebook-button", shareLink);
 });
 
 function getRandomCat(){
@@ -44,10 +45,7 @@ function getQuestions(){
 }
 
 function radioInput() {
-  if (typeof results == "undefined") { //set hash when page loads, empty json objects
-                                              //hit rails controller when you hit next
-                                              //multi-page form
-                                              //jquery multi-page form
+  if (typeof results == "undefined") {
     results = {}
   }
   var questionId = $(this).attr('name')
@@ -76,14 +74,25 @@ function postData(){
 function showResults(response) {
   cat = getCat(response)
   $("html, body").animate({ scrollTop: 0 }, "slow");
-  sendToRails(cat)
-  $("#facebook-button").show()
+    sendToRails(cat)
   $(".information")
     .html(
       catMatchInfo(cat))
   $(".information")
   .append(
     resultCards(response))
+  facebookButton()
+}
+
+function facebookButton(){
+  $(".facebook")
+  .append(
+    "<br><div class='center-align'><button class='facebook-button button btn cyan accent-4'>Share on Facebook!</button></div><br><br>")
+}
+
+function shareLink(){
+  var fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=https://purrrsonalitytest.herokuapp.com/" + cat.name, "pop", "width=600, height=400, scrollbars=no");
+    return false;
 }
 
 function sendToRails(cat){
@@ -150,7 +159,6 @@ function hidePreviousQuestions() {
 }
 
 function renderQuestions(){
-  debugger
   $(".information").html()
   for (i = minQuestion; i <= maxQuestion; i++){
     var number1 = (questions[i].id + '-1')
