@@ -1,9 +1,8 @@
 require "rails_helper"
 
-RSpec.feature "UserSharesResultsonFacebook", type: :feature do
+RSpec.feature "UserCompletesTestAndSeesSavedResults", type: :feature do
   include SpecHelpers
-
-  scenario "user completes test, views results, and shares on facebook", js: true do
+  scenario "user submits test and scores Shironeko", js: true do
     make_cats
     user = User.create(name: "hello")
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -50,10 +49,10 @@ RSpec.feature "UserSharesResultsonFacebook", type: :feature do
 
     wait_for_ajax
 
-    page.driver.browser.window_handles.length.should == 1
+    expect(page).to have_content("Shironeko")
 
-    click_on "Share on Facebook!"
+    click_on user.name
 
-    page.driver.browser.window_handles.length.should == 2
+    expect(page).to have_content("Shironeko")
   end
 end

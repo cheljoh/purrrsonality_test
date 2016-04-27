@@ -1,10 +1,15 @@
-var results;
+var results
+var minQuestion = 0
+var maxQuestion = 9
 
 $(document).ready(function(){
+  var questions = []
   $("button[name=get-cat]").on("click", getRandomCat);
   $("button[name=get-questions]").on("click", getQuestions);
   $("body").on("click", "input:radio", radioInput);
   $("body").on("click", "button.submit", postData);
+  $("body").on("click", "button.next", checkCompletion);
+  $("body").on("click", "button.facebook-button", shareLink);
 });
 
 function getRandomCat(){
@@ -27,8 +32,10 @@ function getQuestions(){
     url: "https://personalitytest.herokuapp.com/api/v1/questions",
     method: "GET",
     dataType: "json",
-    success: function(questions){
-      renderQuestions(questions)
+    success: function(test_questions){
+      questions = test_questions
+      renderQuestions()
+      questionOptions()
       hideButton()
     },
     error: function(){
@@ -38,10 +45,7 @@ function getQuestions(){
 }
 
 function radioInput() {
-  if (typeof results == "undefined") { //set hash when page loads, empty json objects
-                                              //hit rails controller when you hit next
-                                              //multi-page form
-                                              //jquery multi-page form
+  if (typeof results == "undefined") {
     results = {}
   }
   var questionId = $(this).attr('name')
@@ -50,41 +54,45 @@ function radioInput() {
 }
 
 function postData(){
-  if (Object.keys(results).length != 50) {
-    $(".flash").show()
-    $("html, body").animate({ scrollTop: 0 }, "slow");
-  }
-  else {
-    $(".flash").hide()
-    var location = "https://purrrsonalitytest.herokuapp.com/"
-    var post_data = { "answers": results, "location": location }
-    $.ajax({
-      url: "https://personalitytest.herokuapp.com/api/v1/answers",
-      method: "POST",
-      dataType: "json",
-      data: post_data,
-      success: function(response){
-        $(".questions").hide()
-        showResults(response)
-      },
-      error: function(){
-      console.log("Something went wrong")
-      }
-    })
-  }
+  var location = "https://purrrsonalitytest.herokuapp.com/"
+  var post_data = { "answers": results, "location": location }
+  $.ajax({
+    url: "https://personalitytest.herokuapp.com/api/v1/answers",
+    method: "POST",
+    dataType: "json",
+    data: post_data,
+    success: function(response){
+      $(".questions").hide()
+      showResults(response)
+    },
+    error: function(){
+    console.log("Something went wrong")
+    }
+  })
 }
 
 function showResults(response) {
   cat = getCat(response)
   $("html, body").animate({ scrollTop: 0 }, "slow");
-  sendToRails(cat)
-  $("#facebook-button").show()
+    sendToRails(cat)
   $(".information")
     .html(
       catMatchInfo(cat))
   $(".information")
   .append(
     resultCards(response))
+  facebookButton()
+}
+
+function facebookButton(){
+  $(".facebook")
+  .append(
+    "<br><div class='center-align'><button class='facebook-button button btn cyan accent-4'>Share on Facebook!</button></div><br><br>")
+}
+
+function shareLink(){
+  var fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=https://purrrsonalitytest.herokuapp.com/" + cat.name, "pop", "width=600, height=400, scrollbars=no");
+    return false;
 }
 
 function sendToRails(cat){
@@ -130,53 +138,93 @@ function rateScore(score){
   return rating
 }
 
-function renderQuestions(questions){
+function incrementQuestionCounter() {
+  debugger
+  $(".flash").hide()
+  hidePreviousQuestions()
+  minQuestion += 10
+  maxQuestion += 10
+  if (maxQuestion == 49){
+    submitButton()
+  }
+  renderQuestions()
+}
+
+function hidePreviousQuestions() {
+  for (i = minQuestion; i <= maxQuestion; i++){
+    question_id = "#question-" + (i + 1)
+    $(question_id).toggle()
+  }
+  $(".next").remove()
+}
+
+function renderQuestions(){
   $(".information").html()
-  questionOptions()
-  $(questions).each(function(index, test_question){
-    var number1 = (test_question.id + '-1')
-    var number2 = (test_question.id + '-2')
-    var number3 = (test_question.id + '-3')
-    var number4 = (test_question.id + '-4')
-    var number5 = (test_question.id + '-5')
-    var group = (test_question.id)
-  $(".information")
+  for (i = minQuestion; i <= maxQuestion; i++){
+    var number1 = (questions[i].id + '-1')
+    var number2 = (questions[i].id + '-2')
+    var number3 = (questions[i].id + '-3')
+    var number4 = (questions[i].id + '-4')
+    var number5 = (questions[i].id + '-5')
+    var group = (questions[i].id)
+  $(".questions")
     .append(
-      "<div class='row'>" +
-        "<div class='col s5 offset-s1'>" +
-          test_question.question +
-        "</div>" +
-        "<div class='col s5 offset-s1'>" +
-          "<div class='responses'>" +
-            "<input name='" + group + "' value = '1' type='radio' id='" + number1 + "'/>" +
-            "<label for='" + number1 + "'>1</label>" +
+      "<div id=question-" + group + ">"  +
+        "<div class='row'>" +
+          "<div class='col s5 offset-s1'>" +
+            questions[i].question +
           "</div>" +
-          "<div class='responses'>" +
-            "<input name='" + group + "' value = '2' type='radio' id='" + number2 + "'/>" +
-            "<label for='" + number2 + "'>2</label>" +
-          "</div>" +
-          "<div class='responses'>" +
-            "<input name='" + group + "' value = '3' type='radio' id='" + number3 + "' />" +
-            "<label for='" + number3 + "'>3</label>" +
-          "</div>" +
-          "<div class='responses'>" +
-            "<input name='" + group + "' value = '4' type='radio' id='" + number4 + "' />" +
-            "<label for='" + number4 + "'>4</label>" +
-          "</div>" +
-          "<div class='responses'>" +
-            "<input name='" + group + "' value = '5' type='radio' id='" + number5 + "' />" +
-            "<label for='" + number5 + "'>5</label>" +
+          "<div class='col s5 offset-s1'>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '1' type='radio' id='" + number1 + "'/>" +
+              "<label for='" + number1 + "'>1</label>" +
+            "</div>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '2' type='radio' id='" + number2 + "'/>" +
+              "<label for='" + number2 + "'>2</label>" +
+            "</div>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '3' type='radio' id='" + number3 + "' />" +
+              "<label for='" + number3 + "'> 3 </label>" +
+            "</div>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '4' type='radio' id='" + number4 + "' />" +
+              "<label for='" + number4 + "'>4</label>" +
+            "</div>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '5' type='radio' id='" + number5 + "' />" +
+              "<label for='" + number5 + "'>5</label>" +
+            "</div>" +
           "</div>" +
         "</div>" +
       "</div>")
-  })
+  }
+  if (group < 50){
+    $(".information")
+    .append(
+      "<br><div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div><br><br>")
+  }
+}
+
+function checkCompletion(){
+  if (Object.keys(results).length != (maxQuestion + 1)) {
+    $(".flash").show()
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  }
+  else {
+    incrementQuestionCounter()
+  }
+}
+
+function submitButton(){
   $(".information")
-  .append("<br><div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div><br><br>")
+  .append(
+    "<br><div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div><br><br>")
 }
 
 function questionOptions() {
   $(".information")
-    .append(
+    .prepend(
       "<div class='center-align'>" +
         "<p> 1 = Inaccurate <span class='tab-space'> 2 = Somewhat Inaccurate </span> <span class='tab-space'> 3 = Neutral </span> <span class='tab-space'> 4 = Somewhat Accurate </span> <span class='tab-space'> 5 = Accurate</p></span>" +
       "</div>" +
