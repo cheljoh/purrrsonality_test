@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get "/results", to: "users#index"
   post "/results", to: "users#update"
 
+  get "/about", to: "about#index"
+
   get "/Colonel Meow", to: "colonel#show"
   get "/Keyboard Cat", to: "keyboard#show"
   get "/Grumpy Cat", to: "grumpy#show"

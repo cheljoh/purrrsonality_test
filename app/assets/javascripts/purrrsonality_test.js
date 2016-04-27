@@ -28,15 +28,19 @@ function getRandomCat(){
 }
 
 function getQuestions(){
+      hideButton()
   $.ajax({
     url: "https://personalitytest.herokuapp.com/api/v1/questions",
     method: "GET",
     dataType: "json",
+    beforeSend: function(){
+      $('.circle').show()
+    },
     success: function(test_questions){
       questions = test_questions
       renderQuestions()
       questionOptions()
-      hideButton()
+      $('.circle').hide()
     },
     error: function(){
     console.log("Something went wrong")
@@ -139,7 +143,6 @@ function rateScore(score){
 }
 
 function incrementQuestionCounter() {
-  debugger
   $(".flash").hide()
   hidePreviousQuestions()
   minQuestion += 10
@@ -155,7 +158,8 @@ function hidePreviousQuestions() {
     question_id = "#question-" + (i + 1)
     $(question_id).toggle()
   }
-  $(".next").remove()
+  $(".next").hide()
+  // $(".next").hide()
 }
 
 function renderQuestions(){
@@ -199,10 +203,20 @@ function renderQuestions(){
         "</div>" +
       "</div>")
   }
+  nextButton(group)
+  // if (group < 50){
+  //   $(".information")
+  //   .append(
+  //     "<br><div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div><br><br>")
+  // }
+}
+
+function nextButton(group){
   if (group < 50){
-    $(".information")
+    $(".questions")
+    // $(".question-buttons")
     .append(
-      "<br><div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div><br><br>")
+      "<div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div>")
   }
 }
 
@@ -219,7 +233,7 @@ function checkCompletion(){
 function submitButton(){
   $(".information")
   .append(
-    "<br><div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div><br><br>")
+    "<div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div>")
 }
 
 function questionOptions() {
