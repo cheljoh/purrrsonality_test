@@ -28,7 +28,7 @@ function getRandomCat(){
 }
 
 function getQuestions(){
-      hideButton()
+    hideGetQuestionsButton()
   $.ajax({
     url: "https://personalitytest.herokuapp.com/api/v1/questions",
     method: "GET",
@@ -60,6 +60,7 @@ function radioInput() {
 function postData(){
   var location = "https://purrrsonalitytest.herokuapp.com/"
   var post_data = { "answers": results, "location": location }
+  hideSubmitButton()
   $.ajax({
     url: "https://personalitytest.herokuapp.com/api/v1/answers",
     method: "POST",
@@ -73,6 +74,11 @@ function postData(){
     console.log("Something went wrong")
     }
   })
+}
+
+function hideSubmitButton(){
+  $(".submit").hide()
+
 }
 
 function showResults(response) {
@@ -159,7 +165,6 @@ function hidePreviousQuestions() {
     $(question_id).toggle()
   }
   $(".next").hide()
-  // $(".next").hide()
 }
 
 function renderQuestions(){
@@ -204,17 +209,11 @@ function renderQuestions(){
       "</div>")
   }
   nextButton(group)
-  // if (group < 50){
-  //   $(".information")
-  //   .append(
-  //     "<br><div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div><br><br>")
-  // }
 }
 
 function nextButton(group){
   if (group < 50){
     $(".questions")
-    // $(".question-buttons")
     .append(
       "<div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div>")
   }
@@ -245,7 +244,7 @@ function questionOptions() {
       "<br>")
 }
 
-function hideButton(){
+function hideGetQuestionsButton(){
   $("button[name=get-questions]").hide()
 }
 
