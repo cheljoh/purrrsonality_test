@@ -180,7 +180,7 @@ function renderQuestions(){
     .append(
       "<div id=question-" + group + ">"  +
         "<div class='row'>" +
-          "<div class='col s5 offset-s1'>" +
+          "<div class='col s5 offset-s1 form-question'>" +
             questions[i].question +
           "</div>" +
           "<div class='col s5 offset-s1'>" +
@@ -239,7 +239,7 @@ function questionOptions() {
   $(".information")
     .prepend(
       "<div class='center-align'>" +
-        "<p> 1 = Inaccurate <span class='tab-space'> 2 = Somewhat Inaccurate </span> <span class='tab-space'> 3 = Neutral </span> <span class='tab-space'> 4 = Somewhat Accurate </span> <span class='tab-space'> 5 = Accurate</p></span>" +
+        "<p class='form-question'> 1 = Inaccurate <span class='tab-space'> 2 = Somewhat Inaccurate </span> <span class='tab-space'> 3 = Neutral </span> <span class='tab-space'> 4 = Somewhat Accurate </span> <span class='tab-space'> 5 = Accurate</p></span>" +
       "</div>" +
       "<br>")
 }

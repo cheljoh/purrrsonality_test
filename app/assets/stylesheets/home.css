@@ -12,6 +12,7 @@ html {
 
  .responses {
    display: inline;
+   font-size: 150%;
  }
 
  .all-questions {
@@ -58,5 +59,6 @@ html {
   font-size: 150%;
 }
 
-.test-description-title{
+.form-question{
+  font-size: 115%;
 }
