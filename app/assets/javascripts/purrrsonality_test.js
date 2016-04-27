@@ -1,6 +1,6 @@
 var results
-var minQuestion = 1
-var maxQuestion = 10
+var minQuestion = 0
+var maxQuestion = 9
 
 $(document).ready(function(){
   var questions = []
@@ -56,11 +56,11 @@ function radioInput() {
 }
 
 function postData(){
-  if (Object.keys(results).length != 50) {
-    $(".flash").show()
-    $("html, body").animate({ scrollTop: 0 }, "slow");
-  }
-  else {
+  // if (Object.keys(results).length != 50) {
+  //   $(".flash").show()
+  //   $("html, body").animate({ scrollTop: 0 }, "slow");
+  // }
+  // else {
     $(".flash").hide()
     var location = "https://purrrsonalitytest.herokuapp.com/"
     var post_data = { "answers": results, "location": location }
@@ -77,7 +77,7 @@ function postData(){
       console.log("Something went wrong")
       }
     })
-  }
+  // }
 }
 
 function showResults(response) {
@@ -140,20 +140,24 @@ function incrementQuestionCounter() {
   hidePreviousQuestions() //stop at 50
   minQuestion += 10
   maxQuestion += 10
+  if (maxQuestion == 49){
+    submitButton()
+  }
   renderQuestions()
+  // nextButton()
 }
 
 function hidePreviousQuestions() {
   for (i = minQuestion; i <= maxQuestion; i++){
-    question_id = "#question-" + i
+    question_id = "#question-" + (i + 1)
     $(question_id).toggle()
   }
+  $(".next").remove()
 }
 
 function renderQuestions(){
+  debugger
   $(".information").html()
-  console.log(minQuestion)
-  console.log(maxQuestion)
   for (i = minQuestion; i <= maxQuestion; i++){
     var number1 = (questions[i].id + '-1')
     var number2 = (questions[i].id + '-2')
@@ -161,12 +165,6 @@ function renderQuestions(){
     var number4 = (questions[i].id + '-4')
     var number5 = (questions[i].id + '-5')
     var group = (questions[i].id)
-    // var number1 = (test_question.id + '-1')
-    // var number2 = (test_question.id + '-2')
-    // var number3 = (test_question.id + '-3')
-    // var number4 = (test_question.id + '-4')
-    // var number5 = (test_question.id + '-5')
-    // var group = (test_question.id)
   // $(questions).each(function(index, test_question){
   //   var number1 = (test_question.id + '-1')
   //   var number2 = (test_question.id + '-2')
@@ -207,11 +205,28 @@ function renderQuestions(){
           "</div>" +
         "</div>" +
       "</div>")
-  }// })
+  }
+  if (group < 50){
+    $(".information")
+    .append(
+      "<br><div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div><br><br>")
+  }
+    // $(".information")
+    // .append(
+    //   "<br><div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div><br><br>")
+    // "<br><div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div><br><br>") //hide this until all questions are complete
+}
+
+// function nextButton(){
+//   $(".information")
+//   .append(
+//     "<br><div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div><br><br>")
+// }
+
+function submitButton(){
   $(".information")
   .append(
-    "<br><div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div><br><br>" +
-    "<br><div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div><br><br>") //hide this until all questions are complete
+    "<br><div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div><br><br>")
 }
 
 function questionOptions() {
