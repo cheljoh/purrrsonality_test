@@ -15,11 +15,11 @@ class ApplicationController < ActionController::Base
     current_url = request.url
 
     defaults = {
-      # site:        site_name,
-      # title:       title,
-      # image:       image,
-      # description: description,
-      # keywords:    %w[cat personality test],
+      site:        site_name,
+      title:       title,
+      image:       image,
+      description: description,
+      keywords:    %w[cat personality test],
       og: {
         url: current_url,
         site_name: site_name,
