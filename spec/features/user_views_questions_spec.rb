@@ -12,6 +12,4 @@ RSpec.feature "UserViewsQuestions", type: :feature do
 
     expect(page).to  have_content("Have difficulty understanding abstract ideas")
   end
-
-
 end

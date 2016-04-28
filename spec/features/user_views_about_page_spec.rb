@@ -8,6 +8,4 @@ RSpec.feature "UserViewsAboutPage", type: :feature do
 
     expect(page).to  have_content("About the Purrrsonality Test!")
   end
-
-
 end

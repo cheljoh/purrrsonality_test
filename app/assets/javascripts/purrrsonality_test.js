@@ -87,10 +87,6 @@ function postData(){
   }
 }
 
-function hideSubmitButton(){
-  $(".submit").hide()
-}
-
 function showResults(response) {
   cat = getCat(response)
   $("html, body").animate({ scrollTop: 0 }, "slow");
@@ -121,6 +117,10 @@ function incrementQuestionCounter() {
 
 function hideFlash(){
   $(".flash").hide()
+}
+
+function hideSubmitButton(){
+  $(".submit").hide()
 }
 
 function hidePreviousQuestions() {
