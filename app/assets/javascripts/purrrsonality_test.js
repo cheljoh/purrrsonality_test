@@ -97,7 +97,7 @@ function showResults(response) {
 function facebookButton(){
   $(".facebook")
   .append(
-    "<br><div class='center-align'><button class='facebook-button button btn cyan accent-4'>Share on Facebook!</button></div><br><br>")
+    "<br><div class='center-align'><button class='facebook-button button btn cyan accent-4'>Share on Facebook!</button></div><br>")
 }
 
 function shareLink(){
@@ -180,10 +180,10 @@ function renderQuestions(){
     .append(
       "<div id=question-" + group + ">"  +
         "<div class='row'>" +
-          "<div class='col s5 offset-s1 form-question'>" +
+          "<div class='col s6 form-question'>" +
             questions[i].question +
           "</div>" +
-          "<div class='col s5 offset-s1'>" +
+          "<div class='col s6 right-align'>" +
             "<div class='responses'>" +
               "<input name='" + group + "' value = '1' type='radio' id='" + number1 + "'/>" +
               "<label for='" + number1 + "'>1</label>" +
@@ -220,7 +220,7 @@ function nextButton(group){
 }
 
 function checkCompletion(){
-  if (Object.keys(results).length != (maxQuestion + 1)) {
+  if (Object.keys(results).length != (maxQuestion + 1) || (typeof results == "undefined")) {
     $(".flash").show()
     $("html, body").animate({ scrollTop: 0 }, "slow");
   }
@@ -239,7 +239,7 @@ function questionOptions() {
   $(".information")
     .prepend(
       "<div class='center-align'>" +
-        "<p class='form-question'> 1 = Inaccurate <span class='tab-space'> 2 = Somewhat Inaccurate </span> <span class='tab-space'> 3 = Neutral </span> <span class='tab-space'> 4 = Somewhat Accurate </span> <span class='tab-space'> 5 = Accurate</p></span>" +
+        "<p class='question-options'> 1 = Inaccurate <span class='tab-space'> 2 = Somewhat Inaccurate </span> <span class='tab-space'> 3 = Neutral </span> <span class='tab-space'> 4 = Somewhat Accurate </span> <span class='tab-space'> 5 = Accurate</p></span>" +
       "</div>" +
       "<br>")
 }
@@ -274,7 +274,7 @@ function getCat(response){
 function resultCards(response){
   return "<div class='row'>" +
       "<h4 class='center-align'>FIVE FACTOR PERSONALITY TEST RESULTS</h4>" +
-     "<div class='col s4 offset-s1'>" +
+     "<div class='col s6'>" +
        "<div class='card-panel pink lighten-2'>" +
          "<span class='white-text'>" +
            "<p class='factor-title'>Extraversion:  " + response["extraversion"] + "/50</p>" +
@@ -282,7 +282,7 @@ function resultCards(response){
          "</span>" +
         "</div>" +
       "</div>" +
-     "<div class='col s4 offset-s1'>" +
+     "<div class='col s6'>" +
        "<div class='card-panel purple lighten-2'>" +
          "<span class='white-text'>" +
            "<p class='factor-title'>Conscientiousness: " + response["conscientiousness"] + "/50</p>" +
@@ -292,7 +292,7 @@ function resultCards(response){
     "</div>" +
   "</div>" +
   "<div class='row'>" +
-     "<div class='col s4 offset-s1'>" +
+     "<div class='col s6'>" +
        "<div class='card-panel green lighten-2'>" +
         "<span class='white-text'>" +
           "<p class='factor-title'>Intellect/Imagination:  " + response["intellect"] + "/50</p>" +
@@ -300,7 +300,7 @@ function resultCards(response){
         "</span>" +
       "</div>" +
     "</div>" +
-     "<div class='col s4 offset-s1'>" +
+     "<div class='col s6'>" +
        "<div class='card-panel cyan lighten-2'>" +
         "<span class='white-text'>" +
           "<p class='factor-title'>Emotional Stability:  " + response["emotional_stability"] + "/50</p>" +
@@ -310,7 +310,7 @@ function resultCards(response){
     "</div>" +
   "</div>" +
   "<div class='row'>" +
-    "<div class='col s4 offset-s1'>" +
+    "<div class='col s6'>" +
       "<div class='card-panel orange lighten-2'>" +
       "<span class='white-text'>" +
         "<p class='factor-title'>Agreeableness:  " + response["agreeableness"] + "/50</p>" +
@@ -318,9 +318,9 @@ function resultCards(response){
       "</span>" +
       "</div>" +
     "</div>" +
-     "<div class='col s4 offset-s1'>" +
+     "<div class='col s6'>" +
        "<div class='card-panel'>" +
-        "<image src='/assets/grumpy_cat.png'> You - 0/50</image>" +
+        "<image src='/assets/grumpy_cat.png'> <b>You - 0/50<b></image>" +
       "</div>" +
     "</div>" +
   "</div>"

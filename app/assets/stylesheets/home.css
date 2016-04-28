@@ -38,6 +38,9 @@ html {
 .card-panel {
   width: 350px;
   height: 225px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cat-results-picture {
@@ -60,5 +63,27 @@ html {
 }
 
 .form-question{
+  font-size: 17px;
+  margin-top: 5px;
+}
+
+.question-options{
   font-size: 115%;
+}
+
+/*.responses label {
+
+  padding-left: 24px;
+  padding-right: 10px;
+}*/
+
+[type="radio"]:not(:checked)+label,
+[type="radio"]:checked+label {
+  padding-left: 24px;
+  padding-right: 10px;
+}
+
+.questions{
+  margin-left: 140px;
+  margin-right: 140px;
 }
