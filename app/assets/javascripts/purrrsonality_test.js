@@ -48,6 +48,10 @@ function getQuestions(){
   })
 }
 
+function hideGetQuestionsButton(){
+  $("button[name=get-questions]").hide()
+}
+
 function radioInput() {
   if (typeof results == "undefined") {
     results = {}
@@ -78,7 +82,6 @@ function postData(){
 
 function hideSubmitButton(){
   $(".submit").hide()
-
 }
 
 function showResults(response) {
@@ -94,19 +97,104 @@ function showResults(response) {
   facebookButton()
 }
 
-function facebookButton(){
-  $(".facebook")
-  .append(
-    "<br><div class='center-align'><button class='facebook-button button btn cyan accent-4'>Share on Facebook!</button></div><br><br>")
-}
-
-function shareLink(){
-  var fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=https://purrrsonalitytest.herokuapp.com/" + cat.name, "pop", "width=600, height=400, scrollbars=no");
-    return false;
-}
-
 function sendToRails(cat){
   $.post("/results?cat=" + cat.name)
+}
+
+function incrementQuestionCounter() {
+  $(".flash").hide()
+  hidePreviousQuestions()
+  minQuestion += 10
+  maxQuestion += 10
+  if (maxQuestion == 49){
+    submitButton()
+  }
+  renderQuestions()
+}
+
+function hidePreviousQuestions() {
+  for (i = minQuestion; i <= maxQuestion; i++){
+    question_id = "#question-" + (i + 1)
+    $(question_id).toggle()
+  }
+  $(".next").hide()
+}
+
+function renderQuestions(){
+  $(".information").html()
+  for (i = minQuestion; i <= maxQuestion; i++){
+    var number1 = (questions[i].id + '-1')
+    var number2 = (questions[i].id + '-2')
+    var number3 = (questions[i].id + '-3')
+    var number4 = (questions[i].id + '-4')
+    var number5 = (questions[i].id + '-5')
+    var group = (questions[i].id)
+  $(".questions")
+    .append(
+      "<div id=question-" + group + ">"  +
+        "<div class='row'>" +
+          "<div class='col s6 form-question'>" +
+            questions[i].question +
+          "</div>" +
+          "<div class='col s6 right-align'>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '1' type='radio' id='" + number1 + "'/>" +
+              "<label for='" + number1 + "'>1</label>" +
+            "</div>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '2' type='radio' id='" + number2 + "'/>" +
+              "<label for='" + number2 + "'>2</label>" +
+            "</div>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '3' type='radio' id='" + number3 + "' />" +
+              "<label for='" + number3 + "'> 3 </label>" +
+            "</div>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '4' type='radio' id='" + number4 + "' />" +
+              "<label for='" + number4 + "'>4</label>" +
+            "</div>" +
+            "<div class='responses'>" +
+              "<input name='" + group + "' value = '5' type='radio' id='" + number5 + "' />" +
+              "<label for='" + number5 + "'>5</label>" +
+            "</div>" +
+          "</div>" +
+        "</div>" +
+      "</div>")
+  }
+  nextButton(group)
+}
+
+function nextButton(group){
+  if (group < 50){
+    $(".questions")
+    .append(
+      "<div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div>")
+  }
+}
+
+function checkCompletion(){
+  if (typeof results == "undefined" || Object.keys(results).length != (maxQuestion + 1)) {
+    $(".flash").show()
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+  }
+  else {
+    incrementQuestionCounter()
+  }
+}
+
+function submitButton(){
+  $(".information")
+  .append(
+    "<div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div>")
+}
+
+function questionOptions() {
+  $(".information")
+    .prepend(
+      "<div class='center-align'>" +
+        "<p class='question-options'> 1 = Inaccurate <span class='tab-space'> 2 = Somewhat Inaccurate </span> <span class='tab-space'> 3 = Neutral </span> <span class='tab-space'> 4 = Somewhat Accurate </span> <span class='tab-space'> 5 = Accurate</p></span>" +
+      "</div>" +
+      "<br>")
 }
 
 function getAttribute(response){
@@ -148,104 +236,15 @@ function rateScore(score){
   return rating
 }
 
-function incrementQuestionCounter() {
-  $(".flash").hide()
-  hidePreviousQuestions()
-  minQuestion += 10
-  maxQuestion += 10
-  if (maxQuestion == 49){
-    submitButton()
-  }
-  renderQuestions()
-}
-
-function hidePreviousQuestions() {
-  for (i = minQuestion; i <= maxQuestion; i++){
-    question_id = "#question-" + (i + 1)
-    $(question_id).toggle()
-  }
-  $(".next").hide()
-}
-
-function renderQuestions(){
-  $(".information").html()
-  for (i = minQuestion; i <= maxQuestion; i++){
-    var number1 = (questions[i].id + '-1')
-    var number2 = (questions[i].id + '-2')
-    var number3 = (questions[i].id + '-3')
-    var number4 = (questions[i].id + '-4')
-    var number5 = (questions[i].id + '-5')
-    var group = (questions[i].id)
-  $(".questions")
-    .append(
-      "<div id=question-" + group + ">"  +
-        "<div class='row'>" +
-          "<div class='col s5 offset-s1'>" +
-            questions[i].question +
-          "</div>" +
-          "<div class='col s5 offset-s1'>" +
-            "<div class='responses'>" +
-              "<input name='" + group + "' value = '1' type='radio' id='" + number1 + "'/>" +
-              "<label for='" + number1 + "'>1</label>" +
-            "</div>" +
-            "<div class='responses'>" +
-              "<input name='" + group + "' value = '2' type='radio' id='" + number2 + "'/>" +
-              "<label for='" + number2 + "'>2</label>" +
-            "</div>" +
-            "<div class='responses'>" +
-              "<input name='" + group + "' value = '3' type='radio' id='" + number3 + "' />" +
-              "<label for='" + number3 + "'> 3 </label>" +
-            "</div>" +
-            "<div class='responses'>" +
-              "<input name='" + group + "' value = '4' type='radio' id='" + number4 + "' />" +
-              "<label for='" + number4 + "'>4</label>" +
-            "</div>" +
-            "<div class='responses'>" +
-              "<input name='" + group + "' value = '5' type='radio' id='" + number5 + "' />" +
-              "<label for='" + number5 + "'>5</label>" +
-            "</div>" +
-          "</div>" +
-        "</div>" +
-      "</div>")
-  }
-  nextButton(group)
-}
-
-function nextButton(group){
-  if (group < 50){
-    $(".questions")
-    .append(
-      "<div class='center-align'><button class='next button btn cyan accent-4'>Next!</button></div>")
-  }
-}
-
-function checkCompletion(){
-  if (Object.keys(results).length != (maxQuestion + 1)) {
-    $(".flash").show()
-    $("html, body").animate({ scrollTop: 0 }, "slow");
-  }
-  else {
-    incrementQuestionCounter()
-  }
-}
-
-function submitButton(){
-  $(".information")
+function facebookButton(){
+  $(".facebook")
   .append(
-    "<div class='center-align'><button class='submit button btn cyan accent-4'>Submit!</button></div>")
+    "<br><div class='center-align'><button class='facebook-button button btn cyan accent-4'>Share on Facebook!</button></div><br>")
 }
 
-function questionOptions() {
-  $(".information")
-    .prepend(
-      "<div class='center-align'>" +
-        "<p> 1 = Inaccurate <span class='tab-space'> 2 = Somewhat Inaccurate </span> <span class='tab-space'> 3 = Neutral </span> <span class='tab-space'> 4 = Somewhat Accurate </span> <span class='tab-space'> 5 = Accurate</p></span>" +
-      "</div>" +
-      "<br>")
-}
-
-function hideGetQuestionsButton(){
-  $("button[name=get-questions]").hide()
+function shareLink(){
+  var fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=https://purrrsonalitytest.herokuapp.com/" + cat.name, "pop", "width=600, height=400, scrollbars=no");
+    return false;
 }
 
 function getCat(response){
@@ -274,7 +273,7 @@ function getCat(response){
 function resultCards(response){
   return "<div class='row'>" +
       "<h4 class='center-align'>FIVE FACTOR PERSONALITY TEST RESULTS</h4>" +
-     "<div class='col s4 offset-s1'>" +
+     "<div class='col s6'>" +
        "<div class='card-panel pink lighten-2'>" +
          "<span class='white-text'>" +
            "<p class='factor-title'>Extraversion:  " + response["extraversion"] + "/50</p>" +
@@ -282,7 +281,7 @@ function resultCards(response){
          "</span>" +
         "</div>" +
       "</div>" +
-     "<div class='col s4 offset-s1'>" +
+     "<div class='col s6'>" +
        "<div class='card-panel purple lighten-2'>" +
          "<span class='white-text'>" +
            "<p class='factor-title'>Conscientiousness: " + response["conscientiousness"] + "/50</p>" +
@@ -292,7 +291,7 @@ function resultCards(response){
     "</div>" +
   "</div>" +
   "<div class='row'>" +
-     "<div class='col s4 offset-s1'>" +
+     "<div class='col s6'>" +
        "<div class='card-panel green lighten-2'>" +
         "<span class='white-text'>" +
           "<p class='factor-title'>Intellect/Imagination:  " + response["intellect"] + "/50</p>" +
@@ -300,7 +299,7 @@ function resultCards(response){
         "</span>" +
       "</div>" +
     "</div>" +
-     "<div class='col s4 offset-s1'>" +
+     "<div class='col s6'>" +
        "<div class='card-panel cyan lighten-2'>" +
         "<span class='white-text'>" +
           "<p class='factor-title'>Emotional Stability:  " + response["emotional_stability"] + "/50</p>" +
@@ -310,7 +309,7 @@ function resultCards(response){
     "</div>" +
   "</div>" +
   "<div class='row'>" +
-    "<div class='col s4 offset-s1'>" +
+    "<div class='col s6'>" +
       "<div class='card-panel orange lighten-2'>" +
       "<span class='white-text'>" +
         "<p class='factor-title'>Agreeableness:  " + response["agreeableness"] + "/50</p>" +
@@ -318,9 +317,9 @@ function resultCards(response){
       "</span>" +
       "</div>" +
     "</div>" +
-     "<div class='col s4 offset-s1'>" +
+     "<div class='col s6'>" +
        "<div class='card-panel'>" +
-        "<image src='/assets/grumpy_cat.png'> You - 0/50</image>" +
+        "<image src='/assets/grumpy_cat.png'> <b>You - 0/50<b></image>" +
       "</div>" +
     "</div>" +
   "</div>"

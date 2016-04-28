@@ -12,6 +12,7 @@ html {
 
  .responses {
    display: inline;
+   font-size: 150%;
  }
 
  .all-questions {
@@ -37,6 +38,9 @@ html {
 .card-panel {
   width: 350px;
   height: 225px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cat-results-picture {
@@ -58,5 +62,22 @@ html {
   font-size: 150%;
 }
 
-.test-description-title{
+.form-question{
+  font-size: 17px;
+  margin-top: 5px;
+}
+
+.question-options{
+  font-size: 115%;
+}
+
+[type="radio"]:not(:checked)+label,
+[type="radio"]:checked+label {
+  padding-left: 24px;
+  padding-right: 10px;
+}
+
+.questions{
+  margin-left: 140px;
+  margin-right: 140px;
 }

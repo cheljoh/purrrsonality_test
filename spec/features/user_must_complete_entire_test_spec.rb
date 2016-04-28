@@ -24,4 +24,21 @@ RSpec.feature "UserMustCompleteEntireTest", type: :feature do
 
     expect(page).to have_content("Please complete all questions!")
   end
+
+  scenario "user leaves all buttons blank", js: true do
+    make_cats
+    user = User.create(name: "hello")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+    visit "/"
+    click_on "Take the Test!"
+
+    wait_for_ajax
+
+    click_on "Next!"
+
+    wait_for_ajax
+
+    expect(page).to have_content("Please complete all questions!")
+  end
 end
