@@ -62,22 +62,29 @@ function radioInput() {
 }
 
 function postData(){
-  var location = "https://purrrsonalitytest.herokuapp.com/"
-  var post_data = { "answers": results, "location": location }
-  hideSubmitButton()
-  $.ajax({
-    url: "https://personalitytest.herokuapp.com/api/v1/answers",
-    method: "POST",
-    dataType: "json",
-    data: post_data,
-    success: function(response){
-      $(".questions").hide()
-      showResults(response)
-    },
-    error: function(){
-    console.log("Something went wrong")
-    }
-  })
+  if (Object.keys(results).length != 50) {
+    $(".flash").show()
+    $("html, body").animate({ scrollTop: 0 }, "slow")
+  }
+  else {
+    hideFlash()
+    var location = "https://purrrsonalitytest.herokuapp.com/"
+    var post_data = { "answers": results, "location": location }
+    hideSubmitButton()
+    $.ajax({
+      url: "https://personalitytest.herokuapp.com/api/v1/answers",
+      method: "POST",
+      dataType: "json",
+      data: post_data,
+      success: function(response){
+        $(".questions").hide()
+        showResults(response)
+      },
+      error: function(){
+      console.log("Something went wrong")
+      }
+    })
+  }
 }
 
 function hideSubmitButton(){
@@ -102,7 +109,7 @@ function sendToRails(cat){
 }
 
 function incrementQuestionCounter() {
-  $(".flash").hide()
+  hideFlash()
   hidePreviousQuestions()
   minQuestion += 10
   maxQuestion += 10
@@ -110,6 +117,10 @@ function incrementQuestionCounter() {
     submitButton()
   }
   renderQuestions()
+}
+
+function hideFlash(){
+  $(".flash").hide()
 }
 
 function hidePreviousQuestions() {
@@ -172,9 +183,13 @@ function nextButton(group){
   }
 }
 
+function showFlash(){
+  $(".flash").show()
+}
+
 function checkCompletion(){
   if (typeof results == "undefined" || Object.keys(results).length != (maxQuestion + 1)) {
-    $(".flash").show()
+    showFlash()
     $("html, body").animate({ scrollTop: 0 }, "slow");
   }
   else {
