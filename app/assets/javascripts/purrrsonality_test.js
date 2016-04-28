@@ -48,6 +48,10 @@ function getQuestions(){
   })
 }
 
+function hideGetQuestionsButton(){
+  $("button[name=get-questions]").hide()
+}
+
 function radioInput() {
   if (typeof results == "undefined") {
     results = {}
@@ -78,7 +82,6 @@ function postData(){
 
 function hideSubmitButton(){
   $(".submit").hide()
-
 }
 
 function showResults(response) {
@@ -94,58 +97,8 @@ function showResults(response) {
   facebookButton()
 }
 
-function facebookButton(){
-  $(".facebook")
-  .append(
-    "<br><div class='center-align'><button class='facebook-button button btn cyan accent-4'>Share on Facebook!</button></div><br>")
-}
-
-function shareLink(){
-  var fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=https://purrrsonalitytest.herokuapp.com/" + cat.name, "pop", "width=600, height=400, scrollbars=no");
-    return false;
-}
-
 function sendToRails(cat){
   $.post("/results?cat=" + cat.name)
-}
-
-function getAttribute(response){
-  var highest = 0
-  var trait
-  if (response["agreeableness"] < 17) {
-    trait = "low_agreeableness"
-  }
-  else {
-    $.each(response, function(key, value){
-      if (value > highest){
-        highest = value
-        trait = key
-      }
-    });
-  }
-  return trait
-}
-
-function catMatchInfo(cat){
-  return "<div class='cat-results-picture'>" +
-    "<h3>Your Internet Cat Match is...</h3>" +
-    "<h4>" + cat.name + "</h4>" +
-    cat.picture +
-    "<p class='cat-description'>" + cat.description + "</p>" +
-  "</div><br><br><br>"
-}
-
-function rateScore(score){
-  if (score < "17") {
-    rating = "low"
-  }
-  else if (score < "34") {
-    rating = "moderate"
-  }
-  else {
-    rating = "high"
-  }
-  return rating
 }
 
 function incrementQuestionCounter() {
@@ -220,7 +173,7 @@ function nextButton(group){
 }
 
 function checkCompletion(){
-  if (Object.keys(results).length != (maxQuestion + 1) || (typeof results == "undefined")) {
+  if (typeof results == "undefined" || Object.keys(results).length != (maxQuestion + 1)) {
     $(".flash").show()
     $("html, body").animate({ scrollTop: 0 }, "slow");
   }
@@ -244,8 +197,54 @@ function questionOptions() {
       "<br>")
 }
 
-function hideGetQuestionsButton(){
-  $("button[name=get-questions]").hide()
+function getAttribute(response){
+  var highest = 0
+  var trait
+  if (response["agreeableness"] < 17) {
+    trait = "low_agreeableness"
+  }
+  else {
+    $.each(response, function(key, value){
+      if (value > highest){
+        highest = value
+        trait = key
+      }
+    });
+  }
+  return trait
+}
+
+function catMatchInfo(cat){
+  return "<div class='cat-results-picture'>" +
+    "<h3>Your Internet Cat Match is...</h3>" +
+    "<h4>" + cat.name + "</h4>" +
+    cat.picture +
+    "<p class='cat-description'>" + cat.description + "</p>" +
+  "</div><br><br><br>"
+}
+
+function rateScore(score){
+  if (score < "17") {
+    rating = "low"
+  }
+  else if (score < "34") {
+    rating = "moderate"
+  }
+  else {
+    rating = "high"
+  }
+  return rating
+}
+
+function facebookButton(){
+  $(".facebook")
+  .append(
+    "<br><div class='center-align'><button class='facebook-button button btn cyan accent-4'>Share on Facebook!</button></div><br>")
+}
+
+function shareLink(){
+  var fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=https://purrrsonalitytest.herokuapp.com/" + cat.name, "pop", "width=600, height=400, scrollbars=no");
+    return false;
 }
 
 function getCat(response){

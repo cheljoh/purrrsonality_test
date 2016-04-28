@@ -1,5 +1,8 @@
 <% if @cat %>
   <%= render partial: "shared/cat_results" %>
 <% else %>
-  Are you a Grumpy Cat? Take the test to find out!
+  <div class="center-align">
+    <h4>Are you a Grumpy Cat? Take the test to find out!</h4><br><br>
+    <%= link_to "Back to Home!", root_path, class: "button btn deep-purple lighten-3" %>
+  </div>
 <% end %>

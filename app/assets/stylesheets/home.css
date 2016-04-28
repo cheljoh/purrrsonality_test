@@ -71,12 +71,6 @@ html {
   font-size: 115%;
 }
 
-/*.responses label {
-
-  padding-left: 24px;
-  padding-right: 10px;
-}*/
-
 [type="radio"]:not(:checked)+label,
 [type="radio"]:checked+label {
   padding-left: 24px;
