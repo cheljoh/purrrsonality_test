@@ -1,6 +1,6 @@
 <div class='cat-results-picture'>
-  <h3>Your Internet Cat Match is...</h3>
-  <h4><%= @cat.name %> </h4>
+  <h3>I got <%= @cat.name %>, what will you get?!</h3>
   <%= image_tag @cat.picture %>
   <p class='cat-description'> <%= @cat.description %> </p>
+  <%= link_to "Go to Home!", root_path, class: "button btn deep-purple lighten-3" %>
 </div>
