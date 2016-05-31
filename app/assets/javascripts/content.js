@@ -2,12 +2,8 @@ function showResults(response) {
   cat = getCat(response);
   $("html, body").animate({ scrollTop: 0 }, "slow");
     sendToRails(cat);
-  $(".information")
-    .html(
-      catMatchInfo(cat));
-  $(".information")
-    .append(
-    testHeader());
+  $(".information").html(catMatchInfo(cat));
+  $(".information").append(testHeader());
     allCards = resultCards(response);
     $("#results1").append(allCards[0]);
     $("#results1").append(allCards[1]);
@@ -19,7 +15,6 @@ function showResults(response) {
 }
 
 function renderQuestions(){
-  $(".information").html();
   for (i = minQuestion; i <= maxQuestion; i++){
     var number1 = (questions[i].id + '-1');
     var number2 = (questions[i].id + '-2');
@@ -27,37 +22,36 @@ function renderQuestions(){
     var number4 = (questions[i].id + '-4');
     var number5 = (questions[i].id + '-5');
     var group = (questions[i].id);
-  $(".questions")
-    .append(
-      "<div id=question-" + group + ">"  +
-        "<div class='row'>" +
-          "<div class='col s6 form-question'>" +
-            questions[i].question +
+  $(".questions").append(
+    "<div id=question-" + group + ">"  +
+      "<div class='row'>" +
+        "<div class='col s6 form-question'>" +
+          questions[i].question +
+        "</div>" +
+        "<div class='col s6 right-align'>" +
+          "<div class='responses'>" +
+            "<input name='" + group + "' value = '1' type='radio' id='" + number1 + "'/>" +
+            "<label for='" + number1 + "'>1</label>" +
           "</div>" +
-          "<div class='col s6 right-align'>" +
-            "<div class='responses'>" +
-              "<input name='" + group + "' value = '1' type='radio' id='" + number1 + "'/>" +
-              "<label for='" + number1 + "'>1</label>" +
-            "</div>" +
-            "<div class='responses'>" +
-              "<input name='" + group + "' value = '2' type='radio' id='" + number2 + "'/>" +
-              "<label for='" + number2 + "'>2</label>" +
-            "</div>" +
-            "<div class='responses'>" +
-              "<input name='" + group + "' value = '3' type='radio' id='" + number3 + "' />" +
-              "<label for='" + number3 + "'> 3 </label>" +
-            "</div>" +
-            "<div class='responses'>" +
-              "<input name='" + group + "' value = '4' type='radio' id='" + number4 + "' />" +
-              "<label for='" + number4 + "'>4</label>" +
-            "</div>" +
-            "<div class='responses'>" +
-              "<input name='" + group + "' value = '5' type='radio' id='" + number5 + "' />" +
-              "<label for='" + number5 + "'>5</label>" +
-            "</div>" +
+          "<div class='responses'>" +
+            "<input name='" + group + "' value = '2' type='radio' id='" + number2 + "'/>" +
+            "<label for='" + number2 + "'>2</label>" +
+          "</div>" +
+          "<div class='responses'>" +
+            "<input name='" + group + "' value = '3' type='radio' id='" + number3 + "' />" +
+            "<label for='" + number3 + "'> 3 </label>" +
+          "</div>" +
+          "<div class='responses'>" +
+            "<input name='" + group + "' value = '4' type='radio' id='" + number4 + "' />" +
+            "<label for='" + number4 + "'>4</label>" +
+          "</div>" +
+          "<div class='responses'>" +
+            "<input name='" + group + "' value = '5' type='radio' id='" + number5 + "' />" +
+            "<label for='" + number5 + "'>5</label>" +
           "</div>" +
         "</div>" +
-      "</div>");
+      "</div>" +
+    "</div>");
   }
   nextButton(group);
 }
