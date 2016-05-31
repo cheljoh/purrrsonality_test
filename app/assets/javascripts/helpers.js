@@ -7,19 +7,6 @@ function hideGetQuestionsButton(){
   $("button[name=get-questions]").hide();
 }
 
-// function showResults(response) {
-//   cat = getCat(response);
-//   $("html, body").animate({ scrollTop: 0 }, "slow");
-//     sendToRails(cat);
-//   $(".information")
-//     .html(
-//       catMatchInfo(cat));
-//   $(".information")
-//   .append(
-//     resultCards(response));
-//   facebookButton();
-// }
-
 function sendToRails(cat){
   $.post("/results?cat=" + cat.name);
 }
