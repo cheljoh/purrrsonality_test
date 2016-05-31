@@ -1,3 +1,23 @@
+function showResults(response) {
+  cat = getCat(response);
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+    sendToRails(cat);
+  $(".information")
+    .html(
+      catMatchInfo(cat));
+  $(".information")
+    .append(
+    testHeader());
+    allCards = resultCards(response);
+    $("#results1").append(allCards[0]);
+    $("#results1").append(allCards[1]);
+    $("#results2").append(allCards[2]);
+    $("#results2").append(allCards[3]);
+    $("#results3").append(allCards[4]);
+    $("#results3").append(allCards[5]);
+  facebookButton();
+}
+
 function renderQuestions(){
   $(".information").html();
   for (i = minQuestion; i <= maxQuestion; i++){
@@ -104,57 +124,55 @@ function getCat(response){
   return cat;
 }
 
+function testHeader() {
+  return "<h4 class='center-align'>FIVE FACTOR PERSONALITY TEST RESULTS</h4>";
+}
+
 function resultCards(response){
-  return "<div class='row'>" +
-      "<h4 class='center-align'>FIVE FACTOR PERSONALITY TEST RESULTS</h4>" +
-     "<div class='col s6'>" +
-       "<div class='card-panel pink lighten-2'>" +
-         "<span class='white-text'>" +
-           "<p class='factor-title'>Extraversion:  " + response.extraversion + "/50</p>" +
-           "<p>A score of " + response.extraversion + " is considered " + rateScore(response.extraversion) + ". Extraversion measures the degree people seek the presence of others. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection.</p>" +
-         "</span>" +
-        "</div>" +
-      "</div>" +
-     "<div class='col s6'>" +
-       "<div class='card-panel purple lighten-2'>" +
-         "<span class='white-text'>" +
-           "<p class='factor-title'>Conscientiousness: " + response.conscientiousness + "/50</p>" +
-           "<p>A score of " + response.conscientiousness + " is considered " + rateScore(response.conscientiousness) + ". Conscientiousness measures organization. Individuals with a high score may be seen as obsessive, while individudals with a low score may be more spontaneous but less dependable.</p>" +
-        "</span>" +
-      "</div>" +
-    "</div>" +
-  "</div>" +
-  "<div class='row'>" +
-     "<div class='col s6'>" +
-       "<div class='card-panel green lighten-2'>" +
-        "<span class='white-text'>" +
-          "<p class='factor-title'>Intellect/Imagination:  " + response.intellect + "/50</p>" +
-          "<p>A score of " + response.intellect + " is considered " + rateScore(response.intellect) + ". Intellect measures one's curiosity and imagination. Individuals with high scores are more likely to seek extreme experiences (e.g., skydiving), while individudals with low scores are more pragmatic. </p>" +
-        "</span>" +
-      "</div>" +
-    "</div>" +
-     "<div class='col s6'>" +
-       "<div class='card-panel cyan lighten-2'>" +
-        "<span class='white-text'>" +
-          "<p class='factor-title'>Emotional Stability:  " + response.emotional_stability + "/50</p>" +
-          "<p>A score of " + response.emotional_stability + " is considered " + rateScore(response.emotional_stability) + ". Emotional stability measures the tendency to experience unpleasant emotions. Calm personalities are associated with high scores, while excitable personalities are associated with low scores.</p>" +
-        "</span>" +
-      "</div>" +
-    "</div>" +
-  "</div>" +
-  "<div class='row'>" +
-    "<div class='col s6'>" +
-      "<div class='card-panel orange lighten-2'>" +
-      "<span class='white-text'>" +
-        "<p class='factor-title'>Agreeableness:  " + response.agreeableness + "/50</p>" +
-        "<p>A score of " + response.agreeableness + " is considered " + rateScore(response.agreeableness) + ". Agreeabless measures how trusting and cooperative one is. A high score is associated with naivete, while individuals with low scores may be perceived as competitive or not trusting of others.</p>" +
-      "</span>" +
-      "</div>" +
-    "</div>" +
-     "<div class='col s6'>" +
-       "<div class='card-panel'>" +
+  var allCards = [];
+  allCards.push(card(response.extraversion, "Extraversion", "pink lighten-2", extraversionDescription()));
+  allCards.push(card(response.conscientiousness, "Conscientiousness", "purple lighten-2", conscientiousnessDescription()));
+  allCards.push(card(response.intellect, "Intellect/Imagination", "green lighten-2", intellectDescription()));
+  allCards.push(card(response.emotional_stability, "Emotional Stability", "cyan lighten-2", emotionalStabilityDescription()));
+  allCards.push(card(response.agreeableness, "Agreeableness", "pink lighten-2", agreeablenessDescription()));
+  allCards.push(grumpyCat());
+  return allCards;
+}
+
+function grumpyCat(){
+  return  "<div class='col s6'>" +
+      "<div class='card-panel'>" +
         "<image src='/assets/grumpy_cat.png'> <b>You - 0/50<b></image>" +
       "</div>" +
+    "</div>";
+}
+function card(attribute, title, color, description){
+  return "<div class='col s6'>" +
+   "<div class='card-panel " + color + "'>" +
+     "<span class='white-text'>" +
+       "<p class='factor-title'>" + title + ":  " + attribute + "/50</p>" +
+       "<p>A score of " + attribute + " is considered " + rateScore(attribute) + ". " + description + "</p>" +
+     "</span>" +
     "</div>" +
   "</div>";
+}
+
+function extraversionDescription(){
+  return "Extraversion measures the degree people seek the presence of others. A high score is associated with attention-seeking, while a low score is associated with increased self-reflection.";
+}
+
+function conscientiousnessDescription(){
+  return "Conscientiousness measures organization. Individuals with a high score may be seen as obsessive, while individudals with a low score may be more spontaneous but less dependable.";
+}
+
+function intellectDescription(){
+  return "Intellect measures one's curiosity and imagination. Individuals with high scores are more likely to seek extreme experiences (e.g., skydiving), while individudals with low scores are more pragmatic.";
+}
+
+function emotionalStabilityDescription(){
+  return "Emotional stability measures the tendency to experience unpleasant emotions. Calm personalities are associated with high scores, while excitable personalities are associated with low scores.";
+}
+
+function agreeablenessDescription(){
+  return "Agreeabless measures how trusting and cooperative one is. A high score is associated with naivete, while individuals with low scores may be perceived as competitive or not trusting of others.";
 }
