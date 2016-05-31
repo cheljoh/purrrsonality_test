@@ -98,24 +98,48 @@ function getCat(response){
   var cat = {};
   var attribute = getAttribute(response);
   if (attribute == "extraversion") {
-    cat = { name: "Keyboard Cat", picture: "<iframe src='//giphy.com/embed/10RhccNxPSaglW' width='480' height='348' frameBorder='0' class='giphy-embed' allowFullScreen></iframe><p><a href='http://giphy.com/gifs/keyboard-cat-10RhccNxPSaglW'>via GIPHY</a></p>", description: "You are the life of the party! You also enjoy playing the keyboard and wearing blue shirts." };
+    cat = keyboardCat();
   }
   else if (attribute == "low_agreeableness"){
-    cat = {name: 'Grumpy Cat', picture: "<img src='/assets/grumpy_cat_large.jpg' alt='Grumpy Cat'>", description: "You hate...most things. But sleep and food are cool."};
+    cat = grumpyCat();
   }
   else if (attribute == "agreeableness"){
-    cat = { name: "Lil Bub", picture: "<img src = '/assets/lil_bub.jpg' alt='Lil Bub'>", description: "You are trusting and love to lap milk" };
+    cat = lilBub();
   }
   else if (attribute == "emotional_stability"){
-    cat = { name: "Shironeko", picture: "<img src = '/assets/shironeko.jpg' alt='Shironeko'>", description: "You are super chill and don't mind having things placed on your head" };
+    cat = shironeko();
   }
   else if (attribute == "intellect"){
-    cat = { name: "Newspaper Kitteh", picture: "<img src = '/assets/smart_cat.jpg'>", description: "You are inquisitive and embody a curious cat. Just don't get killed!" };
+    cat = newspaperKitteh();
   }
   else if (attribute == "conscientiousness"){
-    cat = { name: "Colonel Meow", picture: "<img src = '/assets/colonel_meow.jpeg'>", description: "You are organized and get shit done. And look really cool while doing it." };
+    cat = colonelMeow();
   }
   return cat;
+}
+
+function colonelMeow(){
+  return { name: "Colonel Meow", picture: "<img src = '/assets/colonel_meow.jpeg'>", description: "You are organized and get shit done. And look really cool while doing it." };
+}
+
+function newspaperKitteh(){
+  return { name: "Newspaper Kitteh", picture: "<img src = '/assets/smart_cat.jpg'>", description: "You are inquisitive and embody a curious cat. Just don't get killed!" };
+}
+
+function shironeko(){
+  return { name: "Shironeko", picture: "<img src = '/assets/shironeko.jpg' alt='Shironeko'>", description: "You are super chill and don't mind having things placed on your head" };
+}
+
+function lilBub(){
+  return { name: "Lil Bub", picture: "<img src = '/assets/lil_bub.jpg' alt='Lil Bub'>", description: "You are trusting and love to lap milk" };
+}
+
+function grumpyCat(){
+  return { name: 'Grumpy Cat', picture: "<img src='/assets/grumpy_cat_large.jpg' alt='Grumpy Cat'>", description: "You hate...most things. But sleep and food are cool." };
+}
+
+function keyboardCat(){
+  return { name: "Keyboard Cat", picture: "<iframe src='//giphy.com/embed/10RhccNxPSaglW' width='480' height='348' frameBorder='0' class='giphy-embed' allowFullScreen></iframe><p><a href='http://giphy.com/gifs/keyboard-cat-10RhccNxPSaglW'>via GIPHY</a></p>", description: "You are the life of the party! You also enjoy playing the keyboard and wearing blue shirts." };
 }
 
 function testHeader() {
@@ -129,11 +153,11 @@ function resultCards(response){
   allCards.push(card(response.intellect, "Intellect/Imagination", "green lighten-2", intellectDescription()));
   allCards.push(card(response.emotional_stability, "Emotional Stability", "cyan lighten-2", emotionalStabilityDescription()));
   allCards.push(card(response.agreeableness, "Agreeableness", "pink lighten-2", agreeablenessDescription()));
-  allCards.push(grumpyCat());
+  allCards.push(grumpyCatCard());
   return allCards;
 }
 
-function grumpyCat(){
+function grumpyCatCard(){
   return  "<div class='col s6'>" +
       "<div class='card-panel'>" +
         "<image src='/assets/grumpy_cat.png'> <b>You - 0/50<b></image>" +
